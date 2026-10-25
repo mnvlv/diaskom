@@ -448,7 +448,7 @@ button { cursor: pointer; }
   .slider { grid-auto-columns: 78%; gap: 16px; }
   .step { min-height: 0; padding: 24px; }
   /* ручные переносы из макета рассчитаны на десктоп */
-  .advantage br, .request .h2 br { display: none; }
+  .advantage br, .request .h2 br, .lead br, .footer__slogan br { display: none; }
   .geo { grid-template-columns: 1fr; gap: 32px; }
   .geo__text .btn { margin-top: 32px; width: 100%; }
   .stat { min-height: 0; padding: 16px; }
