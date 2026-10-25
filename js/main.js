@@ -70,6 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
       copy.setAttribute('aria-hidden', 'true');
       logos.append(copy);
     });
+    // Лента не останавливается, поэтому логотип уезжает из-под курсора:
+    // окрашенный логотип остаётся цветным, пока курсор в пределах ленты
+    logos.addEventListener('mouseover', (e) => {
+      const partner = e.target.closest('.partner');
+      if (partner) partner.classList.add('is-active');
+    });
+    logos.closest('.marquee').addEventListener('mouseleave', () => {
+      logos.querySelectorAll('.is-active').forEach((p) => p.classList.remove('is-active'));
+    });
   }
 
   /* ---------- Плитки «Какой склад» подставляют тип склада в форму ---------- */

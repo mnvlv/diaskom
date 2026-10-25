@@ -259,7 +259,7 @@ button { cursor: pointer; }
 /* цветная версия лежит поверх серой и проявляется при наведении */
 .partner__img--color { filter: none; opacity: 0; }
 /* серая остаётся под цветной — без провала яркости в середине перехода */
-.partner:hover .partner__img--color { opacity: 1; }
+.partner:hover .partner__img--color, .partner.is-active .partner__img--color { opacity: 1; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 .marquee { padding-left: max(var(--gutter), (100% - var(--container)) / 2); }
 
