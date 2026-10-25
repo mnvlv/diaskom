@@ -108,22 +108,36 @@ button { cursor: pointer; }
 .nav__link {
   display: inline-flex; align-items: center; gap: 12px; padding: 8px 0;
   font-size: 16px; font-weight: 400; text-transform: uppercase; white-space: nowrap;
-  background: none; border: 0; transition: color .2s;
+  background: none; border: 0; cursor: pointer;
 }
-.nav__link:hover, .nav__drop-btn[aria-expanded="true"] { color: var(--c-accent); }
+/* наведение и открытое меню по UI kit — подчёркивание */
+.nav__link:hover .nav__text, .nav__drop-btn[aria-expanded="true"] .nav__text { text-decoration: underline; text-underline-offset: 4px; }
 .nav__chevron { width: 22px; height: 22px; transition: transform .2s; }
 .nav__drop-btn[aria-expanded="true"] .nav__chevron { transform: rotate(180deg); }
+.nav__mob-only { display: none; }
+/* выпадающее меню «Стеллажи» по UI kit: 272px, фон #232323, рамка #585858, радиус 8px */
 .nav__sub {
-  position: absolute; top: 100%; left: -20px; z-index: 10; min-width: 280px; padding: 12px 0;
-  background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius);
-  opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s;
+  position: absolute; top: calc(100% + 18px); left: 0; z-index: 10; width: 272px; padding: 20px 16px;
+  display: grid; gap: 10px;
+  background: var(--c-surface); border: 1px solid #585858; border-radius: 8px;
+  opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .2s, transform .2s, visibility .2s;
 }
+.nav__sub::before { content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: 20px; } /* мостик для наведения */
 .nav__drop-btn[aria-expanded="true"] + .nav__sub { opacity: 1; visibility: visible; transform: none; }
-.nav__sub a { display: block; padding: 10px 20px; font-size: 16px; transition: color .2s; }
-.nav__sub a:hover { color: var(--c-accent); }
+.nav__sub a { display: block; font-size: 16px; line-height: 1.2; color: var(--c-text-2); }
+.nav__sub a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .nav__mobile { display: none; }
+/* квадратные кнопки-иконки (шапка на мобильном и бургер) */
+.icon-links { display: flex; gap: 8px; }
+.icon-links a {
+  display: grid; place-items: center; width: 38px; height: 38px; color: var(--c-text-2);
+  border: 1px solid #585858; border-radius: 3px; transition: border-color .2s, color .2s;
+}
+.icon-links a:hover, .icon-links a:focus-visible { border-color: var(--c-accent); color: var(--c-accent); }
+.icon-links .socials__icon { width: 20px; height: 20px; }
+.header__icons { display: none; }
 .header__btn { flex: none; padding: 0 46.5px; }
-.burger { display: none; width: 44px; height: 44px; margin-left: auto; padding: 12px 9px; background: none; border: 0; }
+.burger { display: none; flex: none; width: 44px; height: 44px; margin-left: auto; padding: 12px 9px; background: none; border: 0; }
 .burger span { display: block; height: 2px; margin: 4px 0; background: var(--c-text); transition: transform .25s, opacity .25s; }
 .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
 .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
@@ -232,6 +246,8 @@ button { cursor: pointer; }
   gap: 24px; margin-top: 36px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
 }
 .slider::-webkit-scrollbar { display: none; }
+.slider-wrap { position: relative; }
+.slider-wrap__btn, .slider-all-mob, .steps-nav { display: none; }
 /* карточка по макету: 256×262, радиус 8px, рамка 1px #585858, фон #232323 */
 .project {
   scroll-snap-align: start; min-height: 262px; padding-bottom: 16px; overflow: hidden;
@@ -390,6 +406,11 @@ button { cursor: pointer; }
 .socials a:hover, .socials a:focus-visible { border-color: var(--c-accent); color: var(--c-accent); }
 /* иконка — маска, чтобы при наведении перекрашивалась в оранжевый */
 .socials__icon { width: 20px; height: 18px; background: currentColor; -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; }
+/* пути к иконкам задаются здесь, чтобы url() считался от файла стилей */
+.socials__icon--mail { --icon: url(../img/icons/mail.svg); }
+.socials__icon--phone { --icon: url(../img/icons/phone.svg); }
+.socials__icon--telegram { --icon: url(../img/icons/telegram.svg); }
+.socials__icon--max { --icon: url(../img/icons/max.webp); }
 .footer__col { padding-top: 33px; }
 .footer__title { margin-bottom: 18px; font-size: 20px; font-weight: 600; line-height: 1.2; text-transform: uppercase; }
 .footer__col ul { display: grid; gap: 12px; font-weight: 500; color: var(--c-text-2); }
@@ -444,24 +465,32 @@ button { cursor: pointer; }
 
 @media (max-width: 1024px) {
   :root { --header-h: 72px; --gutter: 24px; }
-  .burger { display: block; }
+  .burger { display: block; margin-left: 12px; }
   .header__btn { display: none; }
+  .header__icons { display: flex; gap: 6px; margin-left: auto; }
+  .header__icons a { width: 32px; height: 32px; }
+  .header__icons .socials__icon { width: 18px; height: 18px; }
+  /* бургер-меню по UI kit: пункты без разделителей, внизу иконки и кнопка */
   .nav {
     position: fixed; inset: var(--header-h) 0 0 0; z-index: 40; display: flex; flex-direction: column;
-    justify-content: space-between; gap: 32px; margin: 0; padding: 24px var(--gutter) 32px; background: var(--c-bg);
+    justify-content: space-between; gap: 32px; margin: 0; padding: 20px var(--gutter) 40px; background: var(--c-bg);
     transform: translateX(100%); visibility: hidden; transition: transform .3s, visibility .3s; overflow-y: auto;
   }
   .nav.is-open { transform: none; visibility: visible; }
   .nav__list { flex-direction: column; align-items: stretch; gap: 0; }
-  .nav__link { width: 100%; justify-content: space-between; padding: 18px 0; font-size: 18px; border-bottom: 1px solid var(--c-border); }
+  .nav__desk-only { display: none; }
+  .nav__mob-only { display: inline-flex; }
+  .nav__link { width: 100%; justify-content: space-between; padding: 8px 0; font-size: 16px; line-height: 1.2; }
+  .nav__chevron { width: 24px; height: 24px; }
   .nav__sub {
-    position: static; display: none; min-width: 0; padding: 8px 0 8px 16px;
+    position: static; display: none; width: auto; padding: 4px 0 4px 12px; gap: 0;
     background: none; border: 0; opacity: 1; visibility: visible; transform: none;
   }
-  .nav__drop-btn[aria-expanded="true"] + .nav__sub { display: block; }
-  .nav__mobile { display: grid; gap: 8px; }
-  .nav__phone { font-size: 22px; font-weight: 600; }
-  .nav__hours { margin-bottom: 16px; color: var(--c-accent); }
+  .nav__sub::before { display: none; }
+  .nav__drop-btn[aria-expanded="true"] + .nav__sub { display: grid; }
+  .nav__sub a { padding: 8px 0; text-transform: uppercase; }
+  .nav__mobile { display: grid; justify-items: center; gap: 24px; }
+  .nav__btn { min-height: 40px; padding: 0 26px; }
 
   .hero__inner { grid-template-columns: 1fr; }
   .hero__media { order: -1; aspect-ratio: 600 / 428; }
@@ -498,11 +527,38 @@ button { cursor: pointer; }
   .slider-nav { width: 100%; }
   .slider-nav__btn { width: 44px; height: 44px; }
   .slider-nav__all { margin-left: auto; }
-  .slider { grid-auto-columns: 78%; gap: 16px; }
-  .step { min-height: 0; padding: 24px; }
+  /* проекты по UI kit: одна карточка, стрелки поверх фото, кнопка «Смотреть все проекты» на всю ширину */
+  .section-head .slider-nav { display: none; }
+  .slider-wrap { container-type: inline-size; margin-top: 32px; }
+  .slider { grid-auto-columns: 100%; gap: 16px; margin-top: 0; }
+  .slider-wrap__btn {
+    display: grid; position: absolute; z-index: 2; top: calc(100cqi * 170 / 256 / 2); width: 40px; height: 40px; transform: translateY(-50%);
+  }
+  .slider-wrap__btn--prev { left: 12px; }
+  .slider-wrap__btn--next { right: 12px; }
+  .project { min-height: 0; }
+  .slider-all-mob { display: flex; width: 100%; margin-top: 24px; }
+  /* «Как мы работаем»: горизонтальный слайдер, стрелки и полоса прогресса */
+  .steps {
+    display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 82%; gap: 16px;
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  }
+  .steps::-webkit-scrollbar { display: none; }
+  .step { min-height: 150px; padding: 24px; scroll-snap-align: start; }
+  .steps .step::after { display: none; }
+  .steps-nav { display: flex; align-items: center; gap: 16px; margin-top: 24px; }
+  .steps-nav .slider-nav__btn { flex: none; width: 40px; height: 40px; }
+  .steps-nav__bar { position: relative; flex: 1; height: 2px; background: #585858; border-radius: 1px; overflow: hidden; }
+  .steps-nav__bar span {
+    position: absolute; inset: 0 auto 0 0; width: var(--size, 25%); background: var(--c-accent);
+    transform: translateX(calc(var(--pos, 0) * (100% / var(--size-k, .25) - 100%))); transition: transform .15s;
+  }
   /* ручные переносы из макета рассчитаны на десктоп */
   .advantage br, .request .h2 br, .lead br, .footer__slogan br { display: none; }
-  .geo { grid-template-columns: 1fr; gap: 32px; }
+  /* география по UI kit: блок в рамке, цифры в одну колонку */
+  .geo { grid-template-columns: 1fr; gap: 24px; }
+  .geo__map { padding: 16px; background: var(--c-surface); border-radius: 8px; box-shadow: 0 0 0 1px #585858; }
+  .geo__stats { grid-template-columns: 1fr; gap: 12px; }
   .geo__text .btn { margin-top: 32px; width: 100%; }
   .stat { min-height: 0; padding: 16px; }
   .stat__num { font-size: 30px; }
@@ -523,16 +579,17 @@ button { cursor: pointer; }
   .footer__card { grid-template-columns: 1fr; padding: 28px 20px 0; }
   .footer__col { padding-top: 24px; }
   .footer__title { margin-bottom: 16px; }
-  .logo--lg img { width: 240px; }
-  .footer__bottom { flex-direction: column; align-items: flex-start; font-size: 14px; }
+  .logo--lg img { width: 200px; }
+  .footer__bottom { flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px 0; font-size: 14px; }
+  .footer__bottom span { order: 1; margin: 8px 0 0; }  /* на мобильном копирайт последним */
 }
 
 @media (max-width: 600px) {
   .cat, .cat--small { grid-column: 1 / -1 !important; }
-  .steps { grid-template-columns: 1fr; gap: 40px; }
-  /* стрелка ↓ между всеми карточками (селектор сильнее десктопного :not(:nth-child(4n))) */
-  .steps .step:not(:last-child)::after { display: block; top: auto; right: auto; bottom: -32px; left: 50%; transform: translateX(-50%) rotate(90deg); }
-  .steps .step:last-child::after { display: none; }
+  /* мобильная шапка: логотип, три кнопки-иконки и бургер в одну строку */
+  .header__inner { gap: 12px; }
+  .header .logo img { width: 128px; }
+  .burger { width: 40px; margin-left: 0; padding: 12px 7px; }
 }
 
 @media (max-width: 400px) {

@@ -14,19 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMenu(false); });
   window.matchMedia('(min-width: 1025px)').addEventListener('change', (e) => { if (e.matches) toggleMenu(false); });
 
-  /* ---------- Выпадающее меню «Стеллажи» ---------- */
-  const dropBtn = document.querySelector('.nav__drop-btn');
-  if (dropBtn) {
-    const dropItem = dropBtn.closest('.nav__item--drop');
-    const setDrop = (open) => dropBtn.setAttribute('aria-expanded', open);
-    const desktop = window.matchMedia('(min-width: 1025px)');
-    dropBtn.addEventListener('click', () => setDrop(dropBtn.getAttribute('aria-expanded') !== 'true'));
-    dropItem.addEventListener('mouseenter', () => { if (desktop.matches) setDrop(true); });
-    dropItem.addEventListener('mouseleave', () => { if (desktop.matches) setDrop(false); });
-    dropItem.addEventListener('focusout', (e) => { if (!dropItem.contains(e.relatedTarget)) setDrop(false); });
-    document.addEventListener('click', (e) => { if (!dropItem.contains(e.target)) setDrop(false); });
+  /* ---------- Выпадающие пункты меню: «Стеллажи» (наведение на десктопе), «Услуги» в бургере ---------- */
+  const desktop = window.matchMedia('(min-width: 1025px)');
+  document.querySelectorAll('.nav__drop-btn').forEach((btn) => {
+    const item = btn.closest('.nav__item');
+    const setDrop = (open) => btn.setAttribute('aria-expanded', open);
+    btn.addEventListener('click', () => setDrop(btn.getAttribute('aria-expanded') !== 'true'));
+    item.addEventListener('mouseenter', () => { if (desktop.matches) setDrop(true); });
+    item.addEventListener('mouseleave', () => { if (desktop.matches) setDrop(false); });
+    item.addEventListener('focusout', (e) => { if (desktop.matches && !item.contains(e.relatedTarget)) setDrop(false); });
+    document.addEventListener('click', (e) => { if (desktop.matches && !item.contains(e.target)) setDrop(false); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setDrop(false); });
-  }
+  });
 
   /* ---------- Видеобаннер ---------- */
   const video = document.getElementById('heroVideo');
@@ -61,6 +60,22 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', update);
     update();
   });
+
+  /* ---------- Полоса прогресса слайдера «Как мы работаем» ---------- */
+  const steps = document.getElementById('stepsSlider');
+  const stepsBar = document.querySelector('.steps-nav__bar span');
+  if (steps && stepsBar) {
+    const updateBar = () => {
+      const max = steps.scrollWidth - steps.clientWidth;
+      const k = max > 0 ? steps.clientWidth / steps.scrollWidth : 1;
+      stepsBar.style.setProperty('--size', k * 100 + '%');
+      stepsBar.style.setProperty('--size-k', k);
+      stepsBar.style.setProperty('--pos', max > 0 ? steps.scrollLeft / max : 0);
+    };
+    steps.addEventListener('scroll', updateBar, { passive: true });
+    window.addEventListener('resize', updateBar);
+    updateBar();
+  }
 
   /* ---------- Бегущая строка логотипов: дублируем ряд для бесшовной анимации ---------- */
   const logos = document.getElementById('logos');

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=29">
+  <link rel="stylesheet" href="css/style.css?v=33">
 </head>
 <body>
 
@@ -32,29 +32,46 @@
       <ul class="nav__list">
         <li class="nav__item nav__item--drop">
           <button class="nav__link nav__drop-btn" type="button" aria-expanded="false" aria-controls="nav-sub">
-            Стеллажи <svg class="nav__chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
+            <span class="nav__text">Стеллажи</span> <svg class="nav__chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
           </button>
           <ul class="nav__sub" id="nav-sub">
             <li><a href="/catalog/palletnye-frontalnye-stellazhi/">Паллетные стеллажи</a></li>
             <li><a href="/catalog/mezoninnye-stellazhi/">Мезонинные стеллажи</a></li>
             <li><a href="/catalog/glubinnye-stellazhi/">Глубинные стеллажи</a></li>
             <li><a href="/catalog/konsolnye-stellazhi/">Консольные стеллажи</a></li>
-            <li><a href="/catalog/metallicheskie-stellazhi/">Полочные стеллажи</a></li>
-            <li><a href="/catalog/stellazhi-dlya-sklada/">Передвижные стеллажи</a></li>
           </ul>
         </li>
-        <li><a href="/services/" class="nav__link">Услуги</a></li>
-        <li><a href="/about/" class="nav__link">О компании</a></li>
-        <li><a href="/services/" class="nav__link">Комплексные решения</a></li>
+        <li class="nav__item">
+          <a href="/services/" class="nav__link nav__desk-only"><span class="nav__text">Услуги</span></a>
+          <!-- в бургер-меню «Услуги» раскрываются, как в UI kit -->
+          <button class="nav__link nav__drop-btn nav__mob-only" type="button" aria-expanded="false" aria-controls="nav-sub-services">
+            <span class="nav__text">Услуги</span> <svg class="nav__chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
+          </button>
+          <ul class="nav__sub nav__mob-only" id="nav-sub-services">
+            <li><a href="/services/sborka-i-montazh/">Сборка и монтаж</a></li>
+            <li><a href="/services/razrabotka-tz-dlya-auktsionov/">Подготовка тех. задания</a></li>
+            <li><a href="/services/proektirovanie-sklada/">Проектирование склада</a></li>
+          </ul>
+        </li>
+        <li class="nav__item"><a href="/about/" class="nav__link"><span class="nav__text">О компании</span></a></li>
+        <li class="nav__item"><a href="/services/" class="nav__link"><span class="nav__text">Комплексные решения</span></a></li>
       </ul>
       <div class="nav__mobile">
-        <a href="tel:+73912592659" class="nav__phone">+7 (391) 259-26-59</a>
-        <span class="nav__hours">Ежедневно с 9:00 до 18:00</span>
-        <a href="#request" class="btn btn--primary">Заказать звонок</a>
+        <div class="icon-links">
+        <a href="tel:+73912592659" aria-label="Позвонить"><span class="socials__icon socials__icon--phone"></span></a>
+        <a href="https://t.me/+79138374659" target="_blank" rel="noopener" aria-label="Написать в Telegram"><span class="socials__icon socials__icon--telegram"></span></a>
+        <a href="https://max.ru/id2464149300_bot" target="_blank" rel="noopener" aria-label="Написать в Max"><span class="socials__icon socials__icon--max"></span></a>
+        </div>
+        <a href="#request" class="btn btn--primary nav__btn">Заказать звонок</a>
       </div>
     </nav>
 
     <a href="#request" class="btn btn--primary header__btn">Заказать звонок</a>
+    <div class="icon-links header__icons">
+        <a href="tel:+73912592659" aria-label="Позвонить"><span class="socials__icon socials__icon--phone"></span></a>
+        <a href="https://t.me/+79138374659" target="_blank" rel="noopener" aria-label="Написать в Telegram"><span class="socials__icon socials__icon--telegram"></span></a>
+        <a href="https://max.ru/id2464149300_bot" target="_blank" rel="noopener" aria-label="Написать в Max"><span class="socials__icon socials__icon--max"></span></a>
+    </div>
     <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
       <span></span><span></span><span></span>
     </button>
@@ -71,10 +88,10 @@
         <h1 class="h1"><span>Создаем пространство</span> <span class="accent">для Вашего роста</span></h1>
         <p class="hero__text">Проектируем, поставляем и монтируем стеллажные системы и металлическую мебель для склада любой сложности. Работаем по всей России и в странах СНГ</p>
         <ul class="hero__features">
-          <li><img src="img/hero-1.webp" width="43" height="38" alt="">Проектирование<br>складов</li>
-          <li><img src="img/hero-2.webp" width="49" height="40" alt="">Поставка<br>оборудования</li>
-          <li><img src="img/hero-3.webp" width="38" height="39" alt="">Монтаж<br>под ключ</li>
-          <li><img src="img/hero-4.webp" width="40" height="39" alt="">Сервисное<br>сопровождение</li>
+          <li><img src="img/hero-1.webp" width="43" height="38" alt="">Проектирование<br> складов</li>
+          <li><img src="img/hero-2.webp" width="49" height="40" alt="">Поставка<br> оборудования</li>
+          <li><img src="img/hero-3.webp" width="38" height="39" alt="">Монтаж<br> под ключ</li>
+          <li><img src="img/hero-4.webp" width="40" height="39" alt="">Сервисное<br> сопровождение</li>
         </ul>
         <div class="hero__buttons">
           <a href="#request" class="btn btn--primary btn--lg">Получить консультацию <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -104,56 +121,56 @@
             <ul class="cats">
         <li class="cat cat--main" style="--img:url('../img/cat-1.webp')">
           <span class="cat__num">01</span>
-          <h3 class="cat__title">Металлические<br>стеллажи</h3>
-          <p class="cat__text">Для офиса, архива, магазина,<br>производства и дома</p>
+          <h3 class="cat__title">Металлические<br> стеллажи</h3>
+          <p class="cat__text">Для офиса, архива, магазина,<br> производства и дома</p>
           <a href="/catalog/metallicheskie-stellazhi/" class="btn btn--primary btn--block cat__btn">Смотреть каталог <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">: металлические стеллажи</span></a>
         </li>
         <li class="cat cat--main" style="--img:url('../img/cat-2.webp')">
           <span class="cat__num">02</span>
-          <h3 class="cat__title">Стеллажи<br>для склада</h3>
-          <p class="cat__text">Паллетные, мезонинные,<br>консольные, глубинные<br>и другие системы</p>
+          <h3 class="cat__title">Стеллажи<br> для склада</h3>
+          <p class="cat__text">Паллетные, мезонинные,<br> консольные, глубинные<br> и другие системы</p>
           <a href="/catalog/stellazhi-dlya-sklada/" class="btn btn--primary btn--block cat__btn">Смотреть каталог <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">: стеллажи для склада</span></a>
         </li>
         <li class="cat cat--main" style="--img:url('../img/cat-3.webp')">
           <span class="cat__num">03</span>
-          <h3 class="cat__title">Металлические<br>шкафы</h3>
-          <p class="cat__text">Для офиса, производства,<br>раздевалок, архивов<br>и хозяйственных нужд</p>
+          <h3 class="cat__title">Металлические<br> шкафы</h3>
+          <p class="cat__text">Для офиса, производства,<br> раздевалок, архивов<br> и хозяйственных нужд</p>
           <a href="/catalog/metallicheskie-shkafy/" class="btn btn--primary btn--block cat__btn">Смотреть каталог <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">: металлические шкафы</span></a>
         </li>
         <li class="cat cat--wide" style="--img:url('../img/cat-4.webp')">
           <span class="cat__num">04</span>
-          <h3 class="cat__title">Производственная<br>мебель</h3>
-          <p class="cat__text">Верстаки, столы, тумбы,<br>системы хранения для рабочих мест</p>
+          <h3 class="cat__title">Производственная<br> мебель</h3>
+          <p class="cat__text">Верстаки, столы, тумбы,<br> системы хранения для рабочих мест</p>
           <a href="/catalog/proizvodstvennaya-mebel/" class="btn btn--primary btn--sm cat__btn">Смотреть каталог <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">: производственная мебель</span></a>
         </li>
         <li class="cat cat--wide" style="--img:url('../img/cat-5.webp')">
           <span class="cat__num">05</span>
-          <h3 class="cat__title">Техника<br>для склада</h3>
-          <p class="cat__text">Тележки, рохли, подъемные<br>столы и другое складское оборудование</p>
+          <h3 class="cat__title">Техника<br> для склада</h3>
+          <p class="cat__text">Тележки, рохли, подъемные<br> столы и другое складское оборудование</p>
           <a href="/catalog/tekhnika-dlya-sklada/" class="btn btn--primary btn--sm cat__btn">Смотреть каталог <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">: техника для склада</span></a>
         </li>
         <li class="cat cat--small" style="--img:url('../img/cat-6.webp')">
           <span class="cat__num">06</span>
           <h3 class="cat__title">Сейфы</h3>
-          <p class="cat__text">Огнестойкие, взломостойкие,<br>офисные и мебельные сейфы</p>
+          <p class="cat__text">Огнестойкие, взломостойкие,<br> офисные и мебельные сейфы</p>
           <a href="/catalog/seyfy/" class="btn btn--primary btn--sm cat__btn">Смотреть каталог <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">: сейфы</span></a>
         </li>
         <li class="cat cat--small" style="--img:url('../img/cat-7.webp')">
           <span class="cat__num">07</span>
-          <h3 class="cat__title">Медицинская<br>мебель</h3>
-          <p class="cat__text">Шкафы, столы, тумбы<br>и кушетки для мед.учреждений</p>
+          <h3 class="cat__title">Медицинская<br> мебель</h3>
+          <p class="cat__text">Шкафы, столы, тумбы<br> и кушетки для мед.учреждений</p>
           <a href="/catalog/metallicheskaya-meditsinskaya-mebel/" class="btn btn--primary btn--sm cat__btn">Смотреть каталог <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">: медицинская мебель</span></a>
         </li>
         <li class="cat cat--small" style="--img:url('../img/cat-8.webp')">
           <span class="cat__num">08</span>
-          <h3 class="cat__title">Почтовые<br>ящики</h3>
-          <p class="cat__text">Для многоквартирных домов,<br>офисов и бизнес-центров</p>
+          <h3 class="cat__title">Почтовые<br> ящики</h3>
+          <p class="cat__text">Для многоквартирных домов,<br> офисов и бизнес-центров</p>
           <a href="/catalog/pochtovye-yashchiki/" class="btn btn--primary btn--sm cat__btn">Смотреть каталог <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">: почтовые ящики</span></a>
         </li>
         <li class="cat cat--small" style="--img:url('../img/cat-9.webp')">
           <span class="cat__num">09</span>
           <h3 class="cat__title">Ключницы</h3>
-          <p class="cat__text">Настенные ключницы для<br>дома, офисов и предприятий</p>
+          <p class="cat__text">Настенные ключницы для<br> дома, офисов и предприятий</p>
           <a href="/catalog/metallicheskie-klyuchnitsy/" class="btn btn--primary btn--sm cat__btn">Смотреть каталог <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">: ключницы</span></a>
         </li>
       </ul>
@@ -165,10 +182,10 @@
     <div class="container">
       <h2 class="h2">Наши преимущества</h2>
       <ul class="advantages">
-        <li class="advantage" style="--ix:2;--iw:105;--ih:108;--tx:151"><img class="advantage__icon" src="img/adv-1.webp" width="105" height="108" alt=""><p>Более 1500 товаров<br>в наличии и под заказ</p></li>
-        <li class="advantage" style="--ix:6;--iy:-3;--iw:137;--ih:93;--tx:187"><img class="advantage__icon" src="img/adv-2.webp" width="137" height="93" alt=""><p>Доставка по всей России<br>и странам СНГ</p></li>
-        <li class="advantage" style="--ix:13;--iw:80;--ih:107;--tx:151"><img class="advantage__icon" src="img/adv-3.webp" width="80" height="107" alt=""><p>Гарантия качества<br>и надежности</p></li>
-        <li class="advantage" style="--ix:23;--iw:102;--ih:105;--tx:187"><img class="advantage__icon" src="img/adv-4.webp" width="102" height="105" alt=""><p>Индивидуальный подбор<br>и проектирование</p></li>
+        <li class="advantage" style="--ix:2;--iw:105;--ih:108;--tx:151"><img class="advantage__icon" src="img/adv-1.webp" width="105" height="108" alt=""><p>Более 1500 товаров<br> в наличии и под заказ</p></li>
+        <li class="advantage" style="--ix:6;--iy:-3;--iw:137;--ih:93;--tx:187"><img class="advantage__icon" src="img/adv-2.webp" width="137" height="93" alt=""><p>Доставка по всей России<br> и странам СНГ</p></li>
+        <li class="advantage" style="--ix:13;--iw:80;--ih:107;--tx:151"><img class="advantage__icon" src="img/adv-3.webp" width="80" height="107" alt=""><p>Гарантия качества<br> и надежности</p></li>
+        <li class="advantage" style="--ix:23;--iw:102;--ih:105;--tx:187"><img class="advantage__icon" src="img/adv-4.webp" width="102" height="105" alt=""><p>Индивидуальный подбор<br> и проектирование</p></li>
       </ul>
     </div>
   </section>
@@ -178,16 +195,16 @@
     <div class="container whs">
       <div class="whs__intro">
         <p class="eyebrow">Подберем решение за 2 минуты</p>
-        <h2 class="h2">Какой склад<br>нужно оснастить?</h2>
+        <h2 class="h2">Какой склад<br> нужно оснастить?</h2>
         <p class="lead">Ответьте на несколько вопросов и получите рекомендации<br> по оборудованию и расчет стоимости</p>
         <a href="#request" class="btn btn--primary btn--lg">Оставить заявку <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       <ul class="whs__grid">
-        <li><a href="#request" class="whs__tile" data-warehouse="logistics"><img src="img/icons/wh-1.svg" width="54" height="35" alt="">Логистический<br>склад</a></li>
-        <li><a href="#request" class="whs__tile" data-warehouse="production"><img src="img/icons/wh-2.svg" width="53" height="44" alt="">Производственный<br>склад</a></li>
-        <li><a href="#request" class="whs__tile" data-warehouse="trade"><img src="img/icons/wh-3.svg" width="55" height="43" alt="">Торговый<br>склад</a></li>
-        <li><a href="#request" class="whs__tile" data-warehouse="console"><img src="img/icons/wh-4.svg" width="54" height="37" alt="">Консольный<br>склад</a></li>
-        <li><a href="#request" class="whs__tile" data-warehouse="cold"><img src="img/icons/wh-5.svg" width="53" height="44" alt="">Холодильный<br>склад</a></li>
+        <li><a href="#request" class="whs__tile" data-warehouse="logistics"><img src="img/icons/wh-1.svg" width="54" height="35" alt="">Логистический<br> склад</a></li>
+        <li><a href="#request" class="whs__tile" data-warehouse="production"><img src="img/icons/wh-2.svg" width="53" height="44" alt="">Производственный<br> склад</a></li>
+        <li><a href="#request" class="whs__tile" data-warehouse="trade"><img src="img/icons/wh-3.svg" width="55" height="43" alt="">Торговый<br> склад</a></li>
+        <li><a href="#request" class="whs__tile" data-warehouse="console"><img src="img/icons/wh-4.svg" width="54" height="37" alt="">Консольный<br> склад</a></li>
+        <li><a href="#request" class="whs__tile" data-warehouse="cold"><img src="img/icons/wh-5.svg" width="53" height="44" alt="">Холодильный<br> склад</a></li>
         <li><a href="#request" class="whs__tile" data-warehouse="archive"><img src="img/icons/wh-6.svg" width="34" height="54" alt="">Архив и офис</a></li>
       </ul>
     </div>
@@ -204,6 +221,9 @@
           <a href="/services/sborka-i-montazh/" class="btn btn--primary btn--xs slider-nav__all">Смотреть все <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
+      <div class="slider-wrap">
+      <button class="slider-nav__btn slider-wrap__btn slider-wrap__btn--prev" type="button" data-slider-prev="projectsSlider" aria-label="Предыдущий проект"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
+      <button class="slider-nav__btn slider-wrap__btn slider-wrap__btn--next" type="button" data-slider-next="projectsSlider" aria-label="Следующий проект"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
       <ul class="slider" id="projectsSlider">
         <li class="project"><div class="project__img" style="--img:url('../img/project-1.webp')"></div><h3 class="project__title">Распределительный центр Wildberries, Подольск</h3></li>
         <li class="project"><div class="project__img" style="--img:url('../img/project-2.webp')"></div><h3 class="project__title">Логистический центр Ozon, Тверь</h3></li>
@@ -211,6 +231,8 @@
         <li class="project"><div class="project__img" style="--img:url('../img/project-4.webp')"></div><h3 class="project__title">Производственный склад «МеталлПроф», Екатеринбург</h3></li>
         <li class="project"><div class="project__img" style="--img:url('../img/project-5.webp')"></div><h3 class="project__title">Склад архивного хранения РЖД, Москва</h3></li>
       </ul>
+      </div>
+      <a href="/services/sborka-i-montazh/" class="btn btn--primary btn--lg slider-all-mob">Смотреть все проекты <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </section>
 
@@ -219,16 +241,21 @@
     <div class="container">
       <h2 class="h2">Как мы работаем</h2>
       <p class="lead lead--lg">Каждый проект разрабатывается индивидуально с учетом всех технических особенностей и задач вашего бизнеса.</p>
-      <ol class="steps">
-        <li class="step"><img class="step__icon" src="img/icons/step-1.svg" width="23" height="29" alt=""><span class="step__num">01</span><h3 class="step__title">Получаем<br>задачу</h3></li>
-        <li class="step"><img class="step__icon" src="img/icons/step-2.svg" width="26" height="29" alt=""><span class="step__num">02</span><h3 class="step__title">Проектируем<br>систему хранения</h3></li>
-        <li class="step"><img class="step__icon" src="img/icons/step-3.svg" width="29" height="26" alt=""><span class="step__num">03</span><h3 class="step__title">Согласовываем<br>решение</h3></li>
-        <li class="step"><img class="step__icon" src="img/icons/step-4.svg" width="29" height="23" alt=""><span class="step__num">04</span><h3 class="step__title">Поставляем<br>оборудование</h3></li>
+      <ol class="steps" id="stepsSlider">
+        <li class="step"><img class="step__icon" src="img/icons/step-1.svg" width="23" height="29" alt=""><span class="step__num">01</span><h3 class="step__title">Получаем<br> задачу</h3></li>
+        <li class="step"><img class="step__icon" src="img/icons/step-2.svg" width="26" height="29" alt=""><span class="step__num">02</span><h3 class="step__title">Проектируем<br> систему хранения</h3></li>
+        <li class="step"><img class="step__icon" src="img/icons/step-3.svg" width="29" height="26" alt=""><span class="step__num">03</span><h3 class="step__title">Согласовываем<br> решение</h3></li>
+        <li class="step"><img class="step__icon" src="img/icons/step-4.svg" width="29" height="23" alt=""><span class="step__num">04</span><h3 class="step__title">Поставляем<br> оборудование</h3></li>
         <li class="step"><img class="step__icon" src="img/icons/step-5.svg" width="21" height="26" alt=""><span class="step__num">05</span><h3 class="step__title">Готовим смету</h3></li>
-        <li class="step"><img class="step__icon" src="img/icons/step-6.svg" width="26" height="29" alt=""><span class="step__num">06</span><h3 class="step__title">Проводим<br>монтаж</h3></li>
-        <li class="step"><img class="step__icon" src="img/icons/step-7.svg" width="28" height="27" alt=""><span class="step__num">07</span><h3 class="step__title">Сдаем проект и<br>обучаем</h3></li>
-        <li class="step"><img class="step__icon" src="img/icons/step-8.svg" width="23" height="29" alt=""><span class="step__num">08</span><h3 class="step__title">Гарантийное<br>обслуживание</h3></li>
+        <li class="step"><img class="step__icon" src="img/icons/step-6.svg" width="26" height="29" alt=""><span class="step__num">06</span><h3 class="step__title">Проводим<br> монтаж</h3></li>
+        <li class="step"><img class="step__icon" src="img/icons/step-7.svg" width="28" height="27" alt=""><span class="step__num">07</span><h3 class="step__title">Сдаем проект и<br> обучаем</h3></li>
+        <li class="step"><img class="step__icon" src="img/icons/step-8.svg" width="23" height="29" alt=""><span class="step__num">08</span><h3 class="step__title">Гарантийное<br> обслуживание</h3></li>
       </ol>
+      <div class="steps-nav">
+        <button class="slider-nav__btn" type="button" data-slider-prev="stepsSlider" aria-label="Предыдущий этап"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
+        <span class="steps-nav__bar" aria-hidden="true"><span></span></span>
+        <button class="slider-nav__btn" type="button" data-slider-next="stepsSlider" aria-label="Следующий этап"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
     </div>
   </section>
 
@@ -238,12 +265,12 @@
       <img class="geo__map" src="img/map.webp" width="446" height="243" alt="Карта поставок по России">
       <ul class="geo__stats">
         <li class="stat"><strong class="stat__num">85+</strong><span class="stat__text">регионов поставок</span></li>
-        <li class="stat"><strong class="stat__num">1500+</strong><span class="stat__text">проектов<br>по всей России</span></li>
-        <li class="stat"><strong class="stat__num">2000+</strong><span class="stat__text">довольных<br>клиентов</span></li>
-        <li class="stat"><strong class="stat__num">12+</strong><span class="stat__text">лет успешной<br>работы</span></li>
+        <li class="stat"><strong class="stat__num">1500+</strong><span class="stat__text">проектов<br> по всей России</span></li>
+        <li class="stat"><strong class="stat__num">2000+</strong><span class="stat__text">довольных<br> клиентов</span></li>
+        <li class="stat"><strong class="stat__num">12+</strong><span class="stat__text">лет успешной<br> работы</span></li>
       </ul>
       <div class="geo__text">
-        <h2 class="h3">Работаем по всей России<br>и в странах СНГ</h2>
+        <h2 class="h3">Работаем по всей России<br> и в странах СНГ</h2>
         <span class="line" aria-hidden="true"></span>
         <p class="lead">Доставляем оборудование в любые регионы. Сотрудничаем с надежными транспортными компаниями</p>
         <a href="#request" class="btn btn--primary btn--lg">Оставить заявку <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -274,7 +301,7 @@
     <div class="container">
       <div class="request" style="--img:url('../img/form-bg.webp')">
         <div class="request__info">
-          <h2 class="h2">Нужна помощь<br>в выборе решения?</h2>
+          <h2 class="h2">Нужна помощь<br> в выборе решения?</h2>
           <span class="line" aria-hidden="true"></span>
           <p class="lead">Получите бесплатную консультацию инженера и расчет<br> стоимости вашего проекта</p>
           <ul class="request__perks">
@@ -345,9 +372,9 @@
           <address class="footer__address">проспект имени газеты Красноярский рабочий, 170а, офис 3-27</address>
         </div>
         <ul class="socials">
-          <li><a href="mailto:info@diaskom.ru" aria-label="Написать на почту"><span class="socials__icon" style="--icon:url(img/icons/mail.svg)"></span></a></li>
-          <li><a href="https://max.ru/id2464149300_bot" target="_blank" rel="noopener" aria-label="Написать в Max"><span class="socials__icon" style="--icon:url(img/icons/max.webp)"></span></a></li>
-          <li><a href="https://t.me/+79138374659" target="_blank" rel="noopener" aria-label="Написать в Telegram"><span class="socials__icon" style="--icon:url(img/icons/telegram.svg)"></span></a></li>
+          <li><a href="mailto:info@diaskom.ru" aria-label="Написать на почту"><span class="socials__icon socials__icon--mail"></span></a></li>
+          <li><a href="https://max.ru/id2464149300_bot" target="_blank" rel="noopener" aria-label="Написать в Max"><span class="socials__icon socials__icon--max"></span></a></li>
+          <li><a href="https://t.me/+79138374659" target="_blank" rel="noopener" aria-label="Написать в Telegram"><span class="socials__icon socials__icon--telegram"></span></a></li>
         </ul>
       </div>
       <nav class="footer__col" aria-label="Каталог">
@@ -388,6 +415,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=29"></script>
+<script src="js/main.js?v=33"></script>
 </body>
 </html>
