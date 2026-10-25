@@ -159,7 +159,9 @@ button { cursor: pointer; }
 .cats { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); margin-top: 40px; }
 .cat {
   position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 248px; padding: 24px;
-  overflow: hidden; isolation: isolate; border: 1px solid var(--c-border-soft); border-radius: var(--radius);
+  overflow: hidden; isolation: isolate; border-radius: 6px;
+  /* рамка по макету: 1px #585858 снаружи карточки, внешний радиус 7px — тенью, чтобы не сдвигать сетку */
+  box-shadow: 0 0 0 1px #585858;
   background: var(--c-surface);
 }
 .cat::before, .cat::after { content: ''; position: absolute; inset: 0; z-index: -1; }
@@ -171,7 +173,7 @@ button { cursor: pointer; }
 .cat__text { margin-top: 12px; font-size: 14px; color: var(--c-text-2); }
 .cat__btn { align-self: flex-start; margin-top: 18px; }
 
-.cat--main { grid-column: span 4; min-height: 348px; padding: 0; border-color: var(--c-accent); }
+.cat--main { grid-column: span 4; min-height: 348px; padding: 0; box-shadow: 0 0 0 1px var(--c-accent); }
 .cat--main::after { background: linear-gradient(90deg, #1a1a1a 33%, rgba(26,26,26,.75) 55%, rgba(26,26,26,.48) 81%, rgba(26,26,26,.3) 100%); }
 .cat--wide::after { background: linear-gradient(90deg, #1a1a1a 30%, rgba(26,26,26,.3) 46%, rgba(26,26,26,.28) 100%); }
 .cat--main .cat__num { font-size: 32px; }
