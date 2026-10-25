@@ -259,15 +259,17 @@ button { cursor: pointer; }
 .step:not(:nth-child(4n))::after { display: block; }
 
 /* ---------- География ---------- */
-.geo { display: grid; grid-template-columns: minmax(0, 446px) 438px 393px; justify-content: space-between; gap: 32px; align-items: center; }
+.geo { display: grid; grid-template-columns: minmax(0, 446px) 438px 393px; justify-content: space-between; gap: 32px; align-items: start; }
 .geo__map { width: 100%; height: auto; }
 .geo__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.stat { min-height: 116px; padding: 16px 16px 14px; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius); }
+/* карточка по макету: 211×116, радиус 8px, рамка 1px #585858 снаружи */
+.stat { min-height: 116px; padding: 15px 16px 12px; background: var(--c-surface); border-radius: 8px; box-shadow: 0 0 0 1px #585858; }
 .stat__num { display: block; font-size: 32px; font-weight: 600; line-height: 1; color: var(--c-accent); }
-.stat__text { display: block; max-width: 140px; margin-top: 12px; font-size: 16px; font-weight: 600; line-height: 1.1; color: var(--c-text-2); }
-.geo__text .line { width: 50px; margin-top: 16px; }
-.geo__text .lead { margin-top: 20px; }
-.geo__text .btn { margin-top: 40px; }
+.stat__text { display: block; margin-top: 17px; font-size: 16px; font-weight: 600; line-height: 1.1; color: var(--c-text-2); }
+.geo__text .line { width: 50px; margin-top: 14px; }
+.geo__text .h3 { line-height: 31px; }
+.geo__text .lead { margin-top: 16px; }
+.geo__text .btn { margin-top: 36px; }
 
 /* ---------- Нам доверяют (бегущая строка) ---------- */
 .marquee { margin-top: 60px; overflow: hidden; }
