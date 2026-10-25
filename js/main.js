@@ -65,16 +65,22 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- Бегущая строка логотипов: дублируем ряд для бесшовной анимации ---------- */
   const logos = document.getElementById('logos');
   if (logos) {
-    [...logos.children].forEach((li) => {
+    const originals = [...logos.children];
+    originals.forEach((li) => {
       const copy = li.cloneNode(true);
       copy.setAttribute('aria-hidden', 'true');
       logos.append(copy);
     });
     // Лента не останавливается, поэтому логотип уезжает из-под курсора:
-    // окрашенный логотип остаётся цветным, пока курсор в пределах ленты
+    // окрашенный логотип остаётся цветным, пока курсор в пределах ленты.
+    // Красим и логотип, и его копию — на стыке круга под курсором оказывается копия.
+    const items = [...logos.children];
     logos.addEventListener('mouseover', (e) => {
       const partner = e.target.closest('.partner');
-      if (partner) partner.classList.add('is-active');
+      if (!partner) return;
+      const i = items.indexOf(partner) % originals.length;
+      items[i].classList.add('is-active');
+      items[i + originals.length].classList.add('is-active');
     });
     logos.closest('.marquee').addEventListener('mouseleave', () => {
       logos.querySelectorAll('.is-active').forEach((p) => p.classList.remove('is-active'));
