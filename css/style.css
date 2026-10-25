@@ -128,7 +128,13 @@ button { cursor: pointer; }
 
 /* ---------- Hero ---------- */
 .hero { padding-top: 34px; }
-.hero__inner { display: grid; grid-template-columns: 1fr 600px; gap: 28px; align-items: start; }
+/* пропорции макета (749 : 598 при контенте 1376) держатся на всех десктопных ширинах;
+   видео тянется на высоту текстовой колонки — от плашки до кнопок, как в макете */
+.hero__inner { display: grid; grid-template-columns: minmax(0, 749fr) minmax(0, 598fr); gap: 28px; align-items: stretch; }
+/* кегль H1 от ширины колонки: «Создаем пространство» = 749px при 54px */
+.hero__content { container-type: inline-size; }
+.hero .h1 { font-size: min(54px, 7.2cqi); }
+.hero .h1 > span { display: block; white-space: nowrap; }
 .pill {
   display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; padding: 0 18px 0 14px; height: 36px;
   font-size: 14px; border: 1px solid var(--c-border); border-radius: 999px;
@@ -139,8 +145,8 @@ button { cursor: pointer; }
 .hero__features li { display: flex; align-items: center; gap: 8px; }
 .hero__features img { flex: none; }
 .hero__buttons { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 52px; }
-.hero__media { aspect-ratio: 600 / 428; overflow: hidden; border-radius: var(--radius-lg); background: var(--c-surface); }
-.hero__video { width: 100%; height: 100%; object-fit: cover; }
+.hero__media { position: relative; overflow: hidden; border-radius: var(--radius-lg); background: var(--c-surface); }
+.hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 /* ---------- Секции ---------- */
 .section { padding-top: var(--section-y); }
@@ -349,7 +355,6 @@ button { cursor: pointer; }
   .nav__list { gap: 32px; }
   .nav__item--drop { margin-right: 0; }
   .header__btn { padding: 0 28px; }
-  .hero__inner { grid-template-columns: 1fr 1fr; }
   .whs { grid-template-columns: 1fr 1.3fr; }
   .geo { grid-template-columns: 1fr 1fr; }
   .geo__text { grid-column: 1 / -1; }
@@ -360,8 +365,19 @@ button { cursor: pointer; }
   .footer__bottom { font-size: 16px; }
 }
 
+/* на узком десктопе пункты переносятся и колонка выше — видео в пропорции макета, по центру */
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .hero__inner { align-items: center; }
+  .hero__media { aspect-ratio: 600 / 428; }
+}
+
 @media (max-width: 1200px) {
   :root { --section-y: 88px; --gap: 24px; }
+  /* шапка до перехода на бургер (1024): компактнее меню, чтобы кнопка не выходила за край */
+  .header__inner { gap: 24px; }
+  .nav__list { gap: 20px; }
+  .nav__link { font-size: 15px; }
+  .header__btn { padding: 0 20px; }
   .cat--small { grid-column: span 6; }
   .whs { grid-template-columns: 1fr; gap: 40px; }
   .steps { grid-template-columns: repeat(2, 1fr); }
@@ -393,7 +409,9 @@ button { cursor: pointer; }
   .nav__hours { margin-bottom: 16px; color: var(--c-accent); }
 
   .hero__inner { grid-template-columns: 1fr; }
-  .hero__media { order: -1; }
+  .hero__media { order: -1; aspect-ratio: 600 / 428; }
+  .hero .h1 { font-size: var(--fs-h1); }
+  .hero .h1 > span { white-space: normal; }
   .cat--main { grid-column: span 6; }
   .cat--main:first-child { grid-column: 1 / -1; }
   .request { grid-template-columns: 1fr; }
