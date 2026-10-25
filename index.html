@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=28">
+  <link rel="stylesheet" href="css/style.css?v=29">
 </head>
 <body>
 
@@ -292,21 +292,24 @@
           <label class="form__field">
             <span class="visually-hidden">Ваш телефон</span>
             <input type="tel" name="phone" placeholder="Ваш телефон" autocomplete="tel" required data-phone>
-            <span class="form__error">Введите номер полностью</span>
+            <span class="form__error" role="alert">Введите номер полностью</span>
           </label>
-          <label class="form__field form__field--select">
-            <span class="visually-hidden">Тип склада</span>
-            <select name="warehouse">
-              <option value="" selected>Тип склада</option>
-              <option value="logistics">Логистический склад</option>
-              <option value="production">Производственный склад</option>
-              <option value="trade">Торговый склад</option>
-              <option value="console">Консольный склад</option>
-              <option value="cold">Холодильный склад</option>
-              <option value="archive">Архив и офис</option>
-            </select>
-            <svg class="form__chevron" viewBox="0 0 25.8 13.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M.9.9l12 12 12-12"/></svg>
-          </label>
+          <div class="form__field form__select" data-select>
+            <span class="visually-hidden" id="whLabel">Тип склада</span>
+            <button type="button" class="form__select-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="whList" aria-labelledby="whLabel whValue">
+              <span class="form__select-value" id="whValue">Тип склада</span>
+              <svg class="form__chevron" viewBox="0 0 25.8 13.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M.9.9l12 12 12-12"/></svg>
+            </button>
+            <ul class="form__options" id="whList" role="listbox" aria-labelledby="whLabel" tabindex="-1" hidden>
+              <li role="option" id="wh-logistics" data-value="logistics" aria-selected="false">Логистический склад</li>
+              <li role="option" id="wh-production" data-value="production" aria-selected="false">Производственный склад</li>
+              <li role="option" id="wh-trade" data-value="trade" aria-selected="false">Торговый склад</li>
+              <li role="option" id="wh-console" data-value="console" aria-selected="false">Консольный склад</li>
+              <li role="option" id="wh-cold" data-value="cold" aria-selected="false">Холодильный склад</li>
+              <li role="option" id="wh-archive" data-value="archive" aria-selected="false">Архив и офис</li>
+            </ul>
+            <input type="hidden" name="warehouse" value="">
+          </div>
           <label class="form__check">
             <input type="checkbox" name="agree" required>
             <span class="form__box" aria-hidden="true"></span>
@@ -337,14 +340,14 @@
             <span class="footer__hours">Ежедневно с 9:00 до 18:00</span>
           </div>
         </div>
-        <div class="footer__contact">
+        <div class="footer__contact footer__contact--address">
           <img src="img/icons/pin.svg" width="26" height="32" alt="">
           <address class="footer__address">проспект имени газеты Красноярский рабочий, 170а, офис 3-27</address>
         </div>
         <ul class="socials">
-          <li><a href="mailto:info@diaskom.ru" aria-label="Написать на почту"><img src="img/icons/mail.svg" width="20" height="16" alt=""></a></li>
-          <li><a href="https://max.ru/id2464149300_bot" target="_blank" rel="noopener" aria-label="Написать в Max"><img src="img/icons/max.webp" width="18" height="17" alt=""></a></li>
-          <li><a href="https://t.me/+79138374659" target="_blank" rel="noopener" aria-label="Написать в Telegram"><img src="img/icons/telegram.svg" width="17" height="16" alt=""></a></li>
+          <li><a href="mailto:info@diaskom.ru" aria-label="Написать на почту"><span class="socials__icon" style="--icon:url(img/icons/mail.svg)"></span></a></li>
+          <li><a href="https://max.ru/id2464149300_bot" target="_blank" rel="noopener" aria-label="Написать в Max"><span class="socials__icon" style="--icon:url(img/icons/max.webp)"></span></a></li>
+          <li><a href="https://t.me/+79138374659" target="_blank" rel="noopener" aria-label="Написать в Telegram"><span class="socials__icon" style="--icon:url(img/icons/telegram.svg)"></span></a></li>
         </ul>
       </div>
       <nav class="footer__col" aria-label="Каталог">
@@ -385,6 +388,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=28"></script>
+<script src="js/main.js?v=29"></script>
 </body>
 </html>

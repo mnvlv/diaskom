@@ -108,11 +108,67 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(tick);
   }
 
+  /* ---------- Выпадающий список «Тип склада» (по UI kit, с клавиатурой) ---------- */
+  const selects = [...document.querySelectorAll('[data-select]')].map((root) => {
+    const btn = root.querySelector('.form__select-btn');
+    const list = root.querySelector('.form__options');
+    const value = root.querySelector('.form__select-value');
+    const input = root.querySelector('input[type="hidden"]');
+    const options = [...list.querySelectorAll('[role="option"]')];
+    const placeholder = value.textContent;
+    let focused = -1;
+
+    const focusOption = (i) => {
+      options.forEach((o) => o.classList.remove('is-focused'));
+      focused = (i + options.length) % options.length;
+      options[focused].classList.add('is-focused');
+      list.setAttribute('aria-activedescendant', options[focused].id);
+    };
+    const open = () => {
+      list.hidden = false;
+      btn.setAttribute('aria-expanded', 'true');
+      const sel = options.findIndex((o) => o.getAttribute('aria-selected') === 'true');
+      focusOption(sel >= 0 ? sel : 0);
+      list.focus({ preventScroll: true });
+    };
+    const close = (returnFocus) => {
+      list.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+      if (returnFocus) btn.focus({ preventScroll: true });
+    };
+    const choose = (val) => {
+      const opt = options.find((o) => o.dataset.value === val);
+      options.forEach((o) => o.setAttribute('aria-selected', String(o === opt)));
+      input.value = opt ? val : '';
+      value.textContent = opt ? opt.textContent : placeholder;
+    };
+
+    btn.addEventListener('click', () => (list.hidden ? open() : close(true)));
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); open(); }
+    });
+    list.addEventListener('click', (e) => {
+      const opt = e.target.closest('[role="option"]');
+      if (!opt) return;
+      choose(opt.dataset.value);
+      close(true);
+    });
+    list.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); focusOption(focused + 1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); focusOption(focused - 1); }
+      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(options[focused].dataset.value); close(true); }
+      else if (e.key === 'Escape') { close(true); }
+      else if (e.key === 'Tab') { close(false); }
+    });
+    document.addEventListener('click', (e) => { if (!root.contains(e.target) && !list.hidden) close(false); });
+    return { name: input.name, choose };
+  });
+
   /* ---------- Плитки «Какой склад» подставляют тип склада в форму ---------- */
   document.querySelectorAll('[data-warehouse]').forEach((tile) => {
     tile.addEventListener('click', () => {
-      const select = document.querySelector('#requestForm select[name="warehouse"]');
-      if (select) select.value = tile.dataset.warehouse;
+      const select = selects.find((sel) => sel.name === 'warehouse');
+      if (select) select.choose(tile.dataset.warehouse);
     });
   });
 
@@ -140,6 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- Форма заявки ---------- */
   const form = document.getElementById('requestForm');
   if (form) {
+    // ошибка снимается, как только номер введён полностью
+    form.elements.phone.addEventListener('input', (e) => {
+      const field = e.target.closest('.form__field');
+      if (field.classList.contains('is-invalid') && e.target.value.replace(/\D/g, '').length === 11) field.classList.remove('is-invalid');
+    });
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const phone = form.elements.phone;
@@ -154,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // TODO: отправка на бэкенд заказчика (fetch / обработчик CMS)
       form.querySelector('.form__success').hidden = false;
       form.reset();
+      selects.forEach((sel) => sel.choose(''));
     });
   }
 });
