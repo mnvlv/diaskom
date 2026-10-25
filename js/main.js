@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  // iOS Safari включает :active (подсветку при нажатии) только при наличии touch-обработчика
+  document.addEventListener('touchstart', () => {}, { passive: true });
+
   /* ---------- Бургер-меню ---------- */
   const burger = document.getElementById('burger');
   const nav = document.getElementById('nav');
