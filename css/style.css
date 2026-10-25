@@ -251,15 +251,17 @@ button { cursor: pointer; }
 .marquee__track { display: flex; align-items: center; width: max-content; animation: marquee 40s linear infinite; }
 .marquee:focus-within .marquee__track { animation-play-state: paused; }
 .partner {
+  --k: 1;
   display: grid; place-items: center; flex: none; width: 280px; height: 85px; margin-right: 32px;
 }
-/* серые → цветные при наведении */
-/* обе версии одного размера (атрибуты width/height = серая версия), цветная вписывается в ту же рамку */
-.partner__img { grid-area: 1 / 1; max-width: 100%; max-height: 100%; object-fit: contain; filter: grayscale(1) brightness(1.1); opacity: .75; transition: opacity .6s ease-in-out; }
-/* цветная версия лежит поверх серой и проявляется при наведении */
+/* обе версии одного размера (--w × --h — размер серой), на узких экранах уменьшаются пропорционально */
+.partner__img {
+  grid-area: 1 / 1; width: calc(var(--w) * var(--k) * 1px); height: calc(var(--h) * var(--k) * 1px); object-fit: contain;
+  filter: grayscale(1) brightness(1.1); opacity: .75; transition: opacity .6s ease-in-out;
+}
+/* цветная версия поверх серой; включается скриптом и держится, пока курсор на ленте */
 .partner__img--color { filter: none; opacity: 0; }
-/* серая остаётся под цветной — без провала яркости в середине перехода */
-.partner:hover .partner__img--color, .partner.is-active .partner__img--color { opacity: 1; }
+.partner.is-active .partner__img--color { opacity: 1; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 .marquee { padding-left: max(var(--gutter), (100% - var(--container)) / 2); }
 
@@ -431,7 +433,7 @@ button { cursor: pointer; }
   .stat__num { font-size: 30px; }
   .stat__text { font-size: 14px; }
   .marquee { margin-top: 32px; }
-  .partner { width: 200px; height: 60px; margin-right: 24px; }
+  .partner { --k: .7; width: 200px; height: 60px; margin-right: 24px; }
   .request { gap: 40px; padding: 28px 20px; }
   .request__perks { grid-template-columns: 1fr; gap: 20px; }
   .request__perks img { width: 32px; height: 32px; }

@@ -71,19 +71,33 @@ document.addEventListener('DOMContentLoaded', () => {
       copy.setAttribute('aria-hidden', 'true');
       logos.append(copy);
     });
-    // Лента не останавливается, поэтому логотип уезжает из-под курсора:
-    // окрашенный логотип остаётся цветным, пока курсор в пределах ленты.
-    // Красим и логотип, и его копию — на стыке круга под курсором оказывается копия.
+    // Цвет логотипа включает скрипт, а не :hover: лента едет под неподвижным курсором,
+    // и браузер то ставит, то снимает :hover — переход дёргался бы.
+    // Каждый кадр проверяем, какой логотип под курсором, и красим его вместе с копией
+    // (на стыке круга под курсором оказывается копия). Цвет снимается при уходе с ленты.
     const items = [...logos.children];
-    logos.addEventListener('mouseover', (e) => {
-      const partner = e.target.closest('.partner');
-      if (!partner) return;
+    const marquee = logos.closest('.marquee');
+    let pointer = null;
+    let frame = 0;
+    const activate = (partner) => {
       const i = items.indexOf(partner) % originals.length;
       items[i].classList.add('is-active');
       items[i + originals.length].classList.add('is-active');
+    };
+    const track = () => {
+      const el = pointer && document.elementFromPoint(pointer.x, pointer.y);
+      const partner = el && el.closest('.partner');
+      if (partner && logos.contains(partner)) activate(partner);
+      frame = pointer ? requestAnimationFrame(track) : 0;
+    };
+    marquee.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      pointer = { x: e.clientX, y: e.clientY };
+      if (!frame) frame = requestAnimationFrame(track);
     });
-    logos.closest('.marquee').addEventListener('mouseleave', () => {
-      logos.querySelectorAll('.is-active').forEach((p) => p.classList.remove('is-active'));
+    marquee.addEventListener('pointerleave', () => {
+      pointer = null;
+      items.forEach((p) => p.classList.remove('is-active'));
     });
   }
 
