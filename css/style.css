@@ -294,46 +294,48 @@ button { cursor: pointer; }
 .marquee { padding-left: max(var(--gutter), (100% - var(--container)) / 2); }
 
 /* ---------- Форма ---------- */
+/* по макету: блок с радиусом 8px и рамкой 1px #585858 снаружи; поля прозрачные 580×65 (выбор — 69), радиус 6.5px */
 .request {
-  position: relative; display: grid; grid-template-columns: 1fr 578px; gap: 80px; align-items: start;
-  padding: 32px; overflow: hidden; isolation: isolate;
-  border: 1px solid var(--c-border); border-radius: var(--radius); background: var(--c-surface);
+  position: relative; display: grid; grid-template-columns: 1fr 580px; gap: 40px; align-items: start;
+  min-height: 432px; padding: 26px 30px 27px 28px; overflow: hidden; isolation: isolate;
+  border-radius: 8px; box-shadow: 0 0 0 1px #585858; background: var(--c-surface);
 }
 .request::before {
   content: ''; position: absolute; inset: 0; z-index: -1;
   background: var(--img, none) center / cover no-repeat;
 }
-.request__info .line { margin-top: 28px; }
-.request__perks { display: grid; grid-template-columns: repeat(2, max-content); gap: 32px; margin-top: 32px; }
-.request__perks li { display: flex; align-items: center; gap: 16px; }
-.request__perks img { flex: none; width: 40px; height: 40px; object-fit: contain; }
-.form { display: grid; gap: 24px; }
+.request__info .line { margin-top: 24px; }
+.request__info .lead { margin-top: 18px; }
+.request__perks { display: grid; grid-template-columns: repeat(2, max-content); gap: 30px 26px; margin-top: 33px; }
+.request__perks li { display: flex; align-items: center; gap: 18px; }
+.request__perks img { flex: none; width: 46px; height: 42px; object-fit: contain; }
+.form { display: grid; gap: 21px; }
 .form__field { position: relative; display: grid; gap: 6px; }
 .form input[type="text"], .form input[type="tel"], .form select {
-  width: 100%; height: 61px; padding: 0 24px; font-size: 20px; color: var(--c-text-2);
-  background: rgba(26, 26, 26, .4); border: 1px solid var(--c-border); border-radius: var(--radius);
+  width: 100%; height: 65px; padding: 0 26px; font-size: 20px; color: var(--c-text-2);
+  background: transparent; border: 1px solid #585858; border-radius: 6.5px;
   transition: border-color .2s; -webkit-appearance: none; appearance: none;
 }
 .form input::placeholder { color: var(--c-text-2); opacity: 1; }
-.form select { padding-right: 64px; cursor: pointer; }
+.form select { height: 69px; padding-right: 64px; cursor: pointer; }
 .form option { color: var(--c-text); background: var(--c-surface); }
-.form__chevron { position: absolute; top: 16px; right: 24px; width: 28px; height: 28px; pointer-events: none; color: var(--c-muted); }
+.form__chevron { position: absolute; top: 27.6px; right: 29px; width: 25.8px; height: 13.8px; pointer-events: none; color: #585858; }
 .form input:focus-visible, .form select:focus-visible { outline: none; border-color: var(--c-accent); }
 .form__error { display: none; font-size: 14px; color: var(--c-error); }
 .form__field.is-invalid input { border-color: var(--c-error); }
 .form__field.is-invalid .form__error { display: block; }
-.form__check { position: relative; display: flex; align-items: center; gap: 12px; margin-top: 6px; font-size: 16px; color: var(--c-muted); cursor: pointer; }
-.form__check input { position: absolute; opacity: 0; width: 22px; height: 22px; margin: 0; }
-.form__box { flex: none; width: 22px; height: 22px; border: 1px solid var(--c-accent); border-radius: var(--radius); transition: background-color .2s; }
+.form__check { position: relative; display: flex; align-items: center; gap: 8.5px; margin-top: 5px; font-size: 16px; color: var(--c-muted); cursor: pointer; }
+.form__check input { position: absolute; opacity: 0; width: 29px; height: 29px; margin: 0; }
+.form__box { flex: none; width: 29px; height: 29px; border: 1px solid var(--c-accent); border-radius: 3.5px; transition: background-color .2s; }
 .form__check input:checked + .form__box {
-  background: var(--c-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.5'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 16px no-repeat;
+  background: var(--c-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.5'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 18px no-repeat;
 }
 .form__check input:focus-visible + .form__box { outline: 2px solid var(--c-accent); outline-offset: 3px; }
 .form__check a { font-weight: 600; color: var(--c-accent); }
 .form__check a:hover { text-decoration: underline; }
 .form__check.is-invalid { color: var(--c-error); }
 .form__check.is-invalid .form__box { border-color: var(--c-error); }
-.form .btn { margin-top: 6px; }
+.form .btn { justify-self: end; width: calc(100% - 1.5px); margin-top: 5px; }
 .form__success { font-size: 16px; color: var(--c-accent); }
 
 /* ---------- Подвал ---------- */
@@ -479,7 +481,8 @@ button { cursor: pointer; }
   .request__perks img { width: 32px; height: 32px; }
   .form { gap: 16px; }
   .form input[type="text"], .form input[type="tel"], .form select { height: 54px; padding: 0 16px; font-size: 16px; }
-  .form__chevron { top: 13px; right: 16px; }
+  .form__chevron { top: 20px; right: 16px; width: 20px; height: 10.7px; }
+  .form .btn { width: 100%; }
   .form__check { align-items: flex-start; font-size: 14px; }
   .footer__card { grid-template-columns: 1fr; padding: 28px 20px 0; }
   .footer__col { padding-top: 24px; }
