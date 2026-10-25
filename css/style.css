@@ -252,15 +252,17 @@ button { cursor: pointer; }
 .marquee:focus-within .marquee__track { animation-play-state: paused; }
 .partner {
   --k: 1;
+  position: relative; isolation: isolate;
   display: grid; place-items: center; flex: none; width: 280px; height: 85px; margin-right: 32px;
 }
-/* обе версии одного размера (--w × --h — размер серой), на узких экранах уменьшаются пропорционально */
+/* обе версии одного размера (--w × --h — размер серой), на узких экранах уменьшаются пропорционально.
+   Серый вид «запечён» в файлы (без filter/opacity) — иначе при переходе браузер мог класть серый слой поверх цветного */
 .partner__img {
-  grid-area: 1 / 1; width: calc(var(--w) * var(--k) * 1px); height: calc(var(--h) * var(--k) * 1px); object-fit: contain;
-  filter: grayscale(1) brightness(1.1); opacity: .75; transition: opacity .6s ease-in-out;
+  grid-area: 1 / 1; position: relative; z-index: 0;
+  width: calc(var(--w) * var(--k) * 1px); height: calc(var(--h) * var(--k) * 1px); object-fit: contain;
 }
-/* цветная версия поверх серой; включается скриптом и держится, пока курсор на ленте */
-.partner__img--color { filter: none; opacity: 0; }
+/* цветная версия всегда сверху, в своём слое; включается скриптом и держится, пока курсор на ленте */
+.partner__img--color { z-index: 1; opacity: 0; transition: opacity .6s ease-in-out; will-change: opacity; }
 .partner.is-active .partner__img--color { opacity: 1; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 .marquee { padding-left: max(var(--gutter), (100% - var(--container)) / 2); }
