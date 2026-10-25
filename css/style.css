@@ -71,7 +71,8 @@ button { cursor: pointer; }
   font-size: 14px; font-weight: 500; line-height: 1; text-transform: uppercase; white-space: nowrap;
   transition: background-color .2s, border-color .2s, color .2s;
 }
-.btn__icon { flex: none; width: 20px; height: 20px; transition: transform .2s; }
+/* стрелка из макета: 19.5×13.7 в обычных кнопках, 13.5×9.7 в малых */
+.btn__icon { flex: none; width: 19.5px; height: 13.7px; transition: transform .2s; }
 .btn:hover .btn__icon { transform: translateX(3px); }
 .btn--primary { background: var(--c-accent); color: #fff; }
 .btn--primary:hover { background: var(--c-accent-hover); }
@@ -82,10 +83,10 @@ button { cursor: pointer; }
 .btn--lg { min-height: 56px; min-width: 283px; padding: 0 21px 0 23px; }
 .btn--outline.btn--lg { min-width: 0; gap: 18px; padding: 0 25px 0 41px; }
 .btn--outline.btn--lg .btn__icon { width: 16px; height: 16px; }
-.btn--sm { min-height: 34px; padding: 0 13px 0 12px; gap: 8px; font-size: 12px; }
-.btn--sm .btn__icon { width: 14px; height: 14px; }
-.btn--xs { min-height: 34px; padding: 0 12px 0 15px; gap: 10px; font-size: 12px; text-transform: none; }
-.btn--xs .btn__icon { width: 16px; height: 16px; }
+.btn--sm { min-height: 34px; padding: 0 15.25px 0 11px; gap: 7.25px; font-size: 12px; }
+.btn--sm .btn__icon { width: 13.5px; height: 9.7px; }
+.btn--xs { min-height: 34px; padding: 0 14.25px 0 15px; gap: 10px; font-size: 12px; text-transform: none; }
+.btn--xs .btn__icon { width: 13.7px; height: 9.8px; }
 .btn--block { width: 100%; }
 
 /* ---------- Логотип ---------- */
@@ -181,7 +182,7 @@ button { cursor: pointer; }
 .cat--main .cat__title { font-size: 32px; }
 .cat--main .cat__text { font-size: 16px; }
 .cat--main .cat__btn { align-self: stretch; min-height: 48px; margin-top: 22px; font-size: 14px; }
-.cat--main .cat__btn .btn__icon { width: 20px; height: 20px; }
+.cat--main .cat__btn .btn__icon { width: 19.5px; height: 13.7px; }
 .cat--wide { grid-column: span 6; }
 .cat--small { grid-column: span 3; }
 
