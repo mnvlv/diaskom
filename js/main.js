@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // Цвет логотипа включает скрипт по координатам курсора — без :hover и событий
     // входа/выхода: лента едет под курсором, и браузеры шлют эти события непоследовательно.
-    // Каждый кадр: курсор внутри ленты → красим логотип под ним (вместе с копией —
-    // на стыке круга под курсором оказывается копия); курсор вне ленты → всё серое.
+    // Каждый кадр: цветной только логотип под курсором (вместе с копией — на стыке круга
+    // под курсором оказывается копия); ушёл курсор с логотипа или из ленты → снова серый.
     // Класс меняется только при смене состояния, чтобы переход не перезапускался.
     const items = [...logos.children];
     const marquee = logos.closest('.marquee');
@@ -110,14 +110,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const box = marquee.getBoundingClientRect();
       const inside = pointer && pointer.x >= box.left && pointer.x <= box.right
         && pointer.y >= box.top && pointer.y <= box.bottom;
-      if (!inside) {
-        active.forEach((i) => setActive(i, false));
-        return;
+      const hovered = new Set();
+      if (inside) {
+        items.forEach((item, k) => {
+          const r = item.getBoundingClientRect();
+          if (pointer.x >= r.left && pointer.x <= r.right && pointer.y >= r.top && pointer.y <= r.bottom) hovered.add(k % n);
+        });
       }
-      items.forEach((item, k) => {
-        const r = item.getBoundingClientRect();
-        if (pointer.x >= r.left && pointer.x <= r.right) setActive(k % n, true);
-      });
+      active.forEach((i) => { if (!hovered.has(i)) setActive(i, false); });
+      hovered.forEach((i) => setActive(i, true));
     };
     window.addEventListener('pointermove', (e) => {
       pointer = e.pointerType === 'mouse' ? { x: e.clientX, y: e.clientY } : null;
