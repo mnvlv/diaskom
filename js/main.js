@@ -71,34 +71,41 @@ document.addEventListener('DOMContentLoaded', () => {
       copy.setAttribute('aria-hidden', 'true');
       logos.append(copy);
     });
-    // Цвет логотипа включает скрипт, а не :hover: лента едет под неподвижным курсором,
-    // и браузер то ставит, то снимает :hover — переход дёргался бы.
-    // Каждый кадр проверяем, какой логотип под курсором, и красим его вместе с копией
-    // (на стыке круга под курсором оказывается копия). Цвет снимается при уходе с ленты.
+    // Цвет логотипа включает скрипт по координатам курсора — без :hover и событий
+    // входа/выхода: лента едет под курсором, и браузеры шлют эти события непоследовательно.
+    // Каждый кадр: курсор внутри ленты → красим логотип под ним (вместе с копией —
+    // на стыке круга под курсором оказывается копия); курсор вне ленты → всё серое.
+    // Класс меняется только при смене состояния, чтобы переход не перезапускался.
     const items = [...logos.children];
     const marquee = logos.closest('.marquee');
+    const n = originals.length;
+    const active = new Set();
     let pointer = null;
-    let frame = 0;
-    const activate = (partner) => {
-      const i = items.indexOf(partner) % originals.length;
-      items[i].classList.add('is-active');
-      items[i + originals.length].classList.add('is-active');
+    const setActive = (i, on) => {
+      if (on === active.has(i)) return;
+      if (on) active.add(i); else active.delete(i);
+      items[i].classList.toggle('is-active', on);
+      items[i + n].classList.toggle('is-active', on);
     };
-    const track = () => {
-      const el = pointer && document.elementFromPoint(pointer.x, pointer.y);
-      const partner = el && el.closest('.partner');
-      if (partner && logos.contains(partner)) activate(partner);
-      frame = pointer ? requestAnimationFrame(track) : 0;
+    const tick = () => {
+      requestAnimationFrame(tick);
+      const box = marquee.getBoundingClientRect();
+      const inside = pointer && pointer.x >= box.left && pointer.x <= box.right
+        && pointer.y >= box.top && pointer.y <= box.bottom;
+      if (!inside) {
+        active.forEach((i) => setActive(i, false));
+        return;
+      }
+      items.forEach((item, k) => {
+        const r = item.getBoundingClientRect();
+        if (pointer.x >= r.left && pointer.x <= r.right) setActive(k % n, true);
+      });
     };
-    marquee.addEventListener('pointermove', (e) => {
-      if (e.pointerType !== 'mouse') return;
-      pointer = { x: e.clientX, y: e.clientY };
-      if (!frame) frame = requestAnimationFrame(track);
-    });
-    marquee.addEventListener('pointerleave', () => {
-      pointer = null;
-      items.forEach((p) => p.classList.remove('is-active'));
-    });
+    window.addEventListener('pointermove', (e) => {
+      pointer = e.pointerType === 'mouse' ? { x: e.clientX, y: e.clientY } : null;
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', () => { pointer = null; });
+    requestAnimationFrame(tick);
   }
 
   /* ---------- Плитки «Какой склад» подставляют тип склада в форму ---------- */
