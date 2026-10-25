@@ -158,7 +158,7 @@ button { cursor: pointer; }
 /* ---------- Каталог ---------- */
 .cats { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); margin-top: 40px; }
 .cat {
-  position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 248px; padding: 24px;
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 248px; padding: 24px 24px 22px;
   overflow: hidden; isolation: isolate; border-radius: 6px;
   /* рамка по макету: 1px #585858 снаружи карточки, внешний радиус 7px — тенью, чтобы не сдвигать сетку */
   box-shadow: 0 0 0 1px #585858;
@@ -168,7 +168,7 @@ button { cursor: pointer; }
 .cat::before { background: var(--img, none) center / cover no-repeat; transition: transform .5s; }
 .cat::after { background: linear-gradient(90deg, #1a1a1a 32%, rgba(26,26,26,.6) 66%, rgba(26,26,26,.35) 100%); }
 .cat:hover::before { transform: scale(1.04); }
-.cat__num { position: absolute; top: 28px; left: 24px; font-size: 28px; font-weight: 600; line-height: 1; color: var(--c-accent); }
+.cat__num { position: absolute; top: 24px; left: 24px; font-size: 28px; font-weight: 600; line-height: 1; color: var(--c-accent); }
 .cat__title { font-size: 28px; font-weight: 600; line-height: 1; }
 .cat__text { margin-top: 12px; font-size: 14px; color: var(--c-text-2); }
 .cat__btn { align-self: flex-start; margin-top: 18px; }
@@ -180,7 +180,7 @@ button { cursor: pointer; }
 .cat--main .cat__title, .cat--main .cat__text { padding: 0 24px; }
 .cat--main .cat__title { font-size: 32px; }
 .cat--main .cat__text { font-size: 16px; }
-.cat--main .cat__btn { align-self: stretch; min-height: 48px; margin-top: 24px; font-size: 14px; }
+.cat--main .cat__btn { align-self: stretch; min-height: 48px; margin-top: 22px; font-size: 14px; }
 .cat--main .cat__btn .btn__icon { width: 20px; height: 20px; }
 .cat--wide { grid-column: span 6; }
 .cat--small { grid-column: span 3; }
