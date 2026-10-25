@@ -186,9 +186,17 @@ button { cursor: pointer; }
 .cat--small { grid-column: span 3; }
 
 /* ---------- Преимущества ---------- */
-.advantages { display: grid; grid-template-columns: repeat(2, 1fr); gap: 70px var(--gap); margin-top: 41px; }
-.advantage { display: flex; align-items: center; gap: 12px; font-size: clamp(22px, 2.5vw, 36px); line-height: 1.05; }
-.advantage__icon { flex: none; width: 140px; height: 110px; object-fit: contain; object-position: left center; }
+.advantages { display: grid; grid-template-columns: repeat(2, 1fr); gap: 66px var(--gap); margin-top: 41px; }
+/* позиции из макета на li: --ix отступ иконки, --iw × --ih её размер, --tx начало текста; --k — масштаб на узких экранах */
+.advantage {
+  --k: 1;
+  display: grid; grid-template-columns: calc(var(--tx) * var(--k) * 1px) 1fr; align-items: center;
+  font-size: clamp(22px, 2.5vw, 36px); font-weight: 500; line-height: 1;
+}
+.advantage__icon {
+  margin-left: calc(var(--ix) * var(--k) * 1px); translate: 0 calc(var(--iy, 0) * var(--k) * 1px); object-fit: contain;
+  width: calc(var(--iw) * var(--k) * 1px); height: calc(var(--ih) * var(--k) * 1px);
+}
 
 /* ---------- Какой склад ---------- */
 .whs { display: grid; grid-template-columns: 1fr 761px; gap: 32px; align-items: start; }
@@ -388,7 +396,7 @@ button { cursor: pointer; }
   .step:not(:nth-child(4n))::after { display: none; }
   .step:nth-child(odd)::after { display: block; }
   .slider { grid-auto-columns: calc((100% - 2 * 24px) / 3); }
-  .advantage__icon { width: 110px; height: 88px; }
+  .advantage { --k: .8; }
 }
 
 @media (max-width: 1024px) {
@@ -437,8 +445,7 @@ button { cursor: pointer; }
   .cat--main .cat__title, .cat__title { font-size: 26px; }
   .cat::after, .cat--main::after, .cat--wide::after { background: linear-gradient(90deg, rgba(26,26,26,.95) 20%, rgba(26,26,26,.55) 100%); }
   .advantages { grid-template-columns: 1fr; gap: 28px; }
-  .advantage { gap: 20px; }
-  .advantage__icon { width: 80px; height: 64px; }
+  .advantage { --k: .55; line-height: 1.1; }
   .whs__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .whs__tile { min-height: 140px; font-size: 16px; line-height: 1.3; }
   .whs__tile img { height: 44px; }
