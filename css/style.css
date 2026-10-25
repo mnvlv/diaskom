@@ -419,6 +419,9 @@ button { cursor: pointer; }
 /* наведение по UI kit: подчёркивание, цвет не меняется */
 .footer__col a:hover, .footer__phone:hover, .footer__bottom a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .footer__all { color: var(--c-accent); text-decoration: underline; text-underline-offset: 3px; }
+/* нажатие на ссылку в подвале — акцентный цвет, как в выпадающих меню */
+.footer__card a { transition: color .15s, border-color .2s; }
+.footer__card a:active { color: var(--c-accent); }
 .footer__bottom {
   grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; margin-top: 22px; padding: 33px 8px 33px 2px;
   font-size: 20px; font-weight: 600; line-height: 1.2; color: var(--c-muted); border-top: 1px solid #585858;
