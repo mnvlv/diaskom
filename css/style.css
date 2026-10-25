@@ -255,10 +255,10 @@ button { cursor: pointer; }
 }
 /* серые → цветные при наведении */
 /* обе версии одного размера (атрибуты width/height = серая версия), цветная вписывается в ту же рамку */
-.partner__img { grid-area: 1 / 1; max-width: 100%; max-height: 100%; object-fit: contain; filter: grayscale(1) brightness(1.1); opacity: .75; transition: opacity .7s ease; }
+.partner__img { grid-area: 1 / 1; max-width: 100%; max-height: 100%; object-fit: contain; filter: grayscale(1) brightness(1.1); opacity: .75; transition: opacity .6s ease-in-out; }
 /* цветная версия лежит поверх серой и проявляется при наведении */
 .partner__img--color { filter: none; opacity: 0; }
-.partner:hover .partner__img { opacity: 0; }
+/* серая остаётся под цветной — без провала яркости в середине перехода */
 .partner:hover .partner__img--color { opacity: 1; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 .marquee { padding-left: max(var(--gutter), (100% - var(--container)) / 2); }
