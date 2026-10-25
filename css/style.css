@@ -219,7 +219,7 @@ button { cursor: pointer; }
 /* ---------- Как мы работаем ---------- */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 52px 47px; margin-top: 36px; }
 .step {
-  position: relative; display: grid; grid-template-columns: auto 1fr; align-content: start; gap: 24px 16px;
+  position: relative; display: grid; grid-template-columns: auto 1fr; align-content: start; gap: 20px 16px;
   min-height: 160px; padding: 28px; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius);
 }
 .step__icon { width: 32px; height: 32px; object-fit: contain; object-position: left center; }
@@ -233,6 +233,10 @@ button { cursor: pointer; }
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.5'%3E%3Cpath d='M3 12h17M14 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 .step:not(:nth-child(4n))::after { display: block; }
+@media (min-width: 1201px) {
+  /* в макете номер у 2–4 карточек первого ряда смещён влево */
+  .step:nth-child(n+2):nth-child(-n+4) .step__num { margin-right: 69px; }
+}
 
 /* ---------- География ---------- */
 .geo { display: grid; grid-template-columns: minmax(0, 446px) 438px 393px; justify-content: space-between; gap: 32px; align-items: center; }
