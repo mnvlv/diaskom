@@ -5,7 +5,6 @@
 :root {
   --c-accent: #ea5901;
   --c-accent-hover: #ff6a14;
-  --c-accent-active: #c94c00;
   --c-accent-dim: #8c3501;      /* неактивная стрелка слайдера */
   --c-bg: #1a1a1a;
   --c-surface: #232323;
@@ -72,14 +71,16 @@ button { cursor: pointer; }
   transition: background-color .2s, border-color .2s, color .2s;
 }
 /* стрелка из макета: 19.5×13.7 в обычных кнопках, 13.5×9.7 в малых */
-.btn__icon { flex: none; width: 19.5px; height: 13.7px; transition: transform .2s; }
-.btn:hover .btn__icon { transform: translateX(3px); }
-.btn--primary { background: var(--c-accent); color: #fff; }
-.btn--primary:hover { background: var(--c-accent-hover); }
-.btn--primary:active { background: var(--c-accent-active); }
-.btn--outline { border-color: var(--c-border); color: var(--c-text); }
-.btn--outline:hover { border-color: var(--c-accent); }
-.btn--outline:hover .btn__icon { transform: none; }
+.btn__icon { flex: none; width: 19.5px; height: 13.7px; }
+/* состояния по UI kit (transition 0.2s):
+   основная и маленькая — оранжевая → прозрачная с рамкой #585858;
+   доп. (контурная) — серая рамка → оранжевые рамка и текст;
+   «Смотреть все» — оранжевая → тёмная #232323 */
+.btn--primary { background: var(--c-accent); border-color: var(--c-accent); color: #fff; }
+.btn--primary:hover, .btn--primary:focus-visible { background: transparent; border-color: #585858; }
+.btn--outline { border-color: #585858; color: var(--c-text); }
+.btn--outline:hover, .btn--outline:focus-visible { border-color: var(--c-accent); color: var(--c-accent); }
+.btn--primary.btn--xs:hover, .btn--primary.btn--xs:focus-visible { background: var(--c-surface); border-color: var(--c-surface); }
 .btn--lg { min-height: 56px; min-width: 283px; padding: 0 21px 0 23px; }
 .btn--outline.btn--lg { min-width: 0; gap: 18px; padding: 0 25px 0 41px; }
 .btn--outline.btn--lg .btn__icon { width: 16px; height: 16px; }
