@@ -81,7 +81,7 @@ button { cursor: pointer; }
 }
 
 /* ---------- Наведение на текстовые элементы: акцентный цвет с мягким переходом (вместо подчёркивания) ---------- */
-.crumbs a, .nav__link, .nav__sub a, .mega__head, .mega__links a, .mega__all, .footer__col a, .footer__phone, .footer__bottom a,
+.crumbs a, .nav__link, .nav__sub a, .mega__head, .mega__links a, .footer__col a, .footer__phone, .footer__bottom a,
 .form__check a, .cat-card__title, .cat-card__sub a, .cats-box__more, .c-check, .filter__cats a, .sort__list li, .product__title a, .faq__q button {
   transition: color .3s ease;
 }
@@ -177,9 +177,7 @@ button { cursor: pointer; }
 .mega__head:hover { border-color: var(--c-accent); }
 .mega__links { display: grid; gap: 7px; margin-top: 10px; font-size: 14px; line-height: 1.25; color: var(--c-text-2); }
 .mega__links a:hover, .mega__head:hover { color: var(--c-accent); }
-.mega__links a:active, .mega__all:active { color: var(--c-accent); }
-.mega__all { align-self: flex-start; margin-top: 10px; font-size: 14px; color: var(--c-accent); }
-.mega__all:hover { color: #ff8a3d; }
+.mega__links a:active { color: var(--c-accent); }
 .nav__sub a { display: block; font-size: 16px; line-height: 1.2; color: var(--c-text-2); }
 .nav__sub a:hover { color: var(--c-accent); }
 /* нажатие на пункт выпадающего меню — акцентный цвет (по макету) */
@@ -556,7 +554,7 @@ button { cursor: pointer; }
     position: static; display: none; width: auto; margin: 0; padding: 4px 0 4px 12px;
     background: none; border: 0; box-shadow: none; opacity: 1; visibility: visible; transform: none; max-height: none; overflow: visible;
   }
-  .mega__links, .mega__all, .nav__item--mega .nav__drop-btn::after { display: none; }
+  .mega__links, .nav__item--mega .nav__drop-btn::after { display: none; }
   .nav__drop-btn[aria-expanded="true"] + .mega { display: block; }
   .mega__grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .mega__head { padding: 8px 0; font-weight: 400; text-transform: uppercase; border: 0; }
