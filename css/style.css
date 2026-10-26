@@ -360,7 +360,8 @@ button { cursor: pointer; }
 .partner__img--color { z-index: 1; opacity: 0; transition: opacity .6s ease-in-out; will-change: opacity; }
 .partner.is-active .partner__img--color { opacity: 1; }
 @keyframes marquee { to { transform: translateX(-50%); } }
-.marquee { padding-left: max(var(--gutter), (100% - var(--container)) / 2); }
+/* лента обрезается по ширине контента: за края контейнера логотипы не выходят */
+.marquee { margin-inline: max(var(--gutter), (100% - var(--container)) / 2); }
 
 /* ---------- Форма ---------- */
 /* по макету: блок с радиусом 8px и рамкой 1px #585858 снаружи; поля прозрачные 580×65 (выбор — 69), радиус 6.5px */
