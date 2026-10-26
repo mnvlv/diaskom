@@ -209,7 +209,7 @@ button { cursor: pointer; }
 .hero__buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 52px; padding-left: 4px; }
 .hero__media {
   position: relative; overflow: hidden; border-radius: var(--radius-lg); background: var(--c-surface);
-  box-shadow: 0 0 0 1px #585858, 0 16px 32px -16px rgba(0, 0, 0, .85), 0 0 110px -40px rgba(234, 89, 1, .75);
+  box-shadow: 0 0 0 1px #585858, 0 12px 24px -14px rgba(0, 0, 0, .85), 0 8px 56px -18px rgba(234, 89, 1, .85);
 }
 .hero__media::before {
   content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; pointer-events: none;
