@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // iOS Safari включает :active (подсветку при нажатии) только при наличии touch-обработчика
   document.addEventListener('touchstart', () => {}, { passive: true });
 
+  /* ---------- Шапка: фон плотнее после прокрутки (где баннер заходит под шапку) ---------- */
+  const header = document.querySelector('.header');
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 10);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
   /* ---------- Бургер-меню ---------- */
   const burger = document.getElementById('burger');
   const nav = document.getElementById('nav');
@@ -17,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMenu(false); });
   window.matchMedia('(min-width: 1025px)').addEventListener('change', (e) => { if (e.matches) toggleMenu(false); });
 
-  /* ---------- Выпадающие пункты меню: «Стеллажи» (наведение на десктопе), «Услуги» в бургере ---------- */
+  /* ---------- Выпадающие пункты меню: мегаменю «Каталог» и «Услуги» (на десктопе — по наведению) ---------- */
   const desktop = window.matchMedia('(min-width: 1025px)');
   document.querySelectorAll('.nav__drop-btn').forEach((btn) => {
     const item = btn.closest('.nav__item');

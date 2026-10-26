@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=37">
+  <link rel="stylesheet" href="css/style.css?v=42">
 </head>
 <body>
 
@@ -30,24 +30,65 @@
 
     <nav class="nav" id="nav" aria-label="Основное меню">
       <ul class="nav__list">
-        <li class="nav__item nav__item--drop">
-          <button class="nav__link nav__drop-btn" type="button" aria-expanded="false" aria-controls="nav-sub">
-            <span class="nav__text">Стеллажи</span> <svg class="nav__chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
+        <li class="nav__item nav__item--drop nav__item--mega">
+          <button class="nav__link nav__drop-btn" type="button" aria-expanded="false" aria-controls="nav-catalog">
+            <span class="nav__text">Каталог</span> <svg class="nav__chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
           </button>
-          <ul class="nav__sub" id="nav-sub">
-            <li><a href="/catalog/palletnye-frontalnye-stellazhi/">Паллетные стеллажи</a></li>
-            <li><a href="/catalog/mezoninnye-stellazhi/">Мезонинные стеллажи</a></li>
-            <li><a href="/catalog/glubinnye-stellazhi/">Глубинные стеллажи</a></li>
-            <li><a href="/catalog/konsolnye-stellazhi/">Консольные стеллажи</a></li>
-          </ul>
+          <div class="mega" id="nav-catalog">
+            <ul class="mega__grid">
+              <li class="mega__col">
+                <a href="/catalog/metallicheskie-stellazhi/" class="mega__head"><img src="img/menu/cat-1.webp" width="32" height="32" alt="" loading="lazy">Металлические стеллажи</a>
+                <ul class="mega__links"><li><a href="#">Серия MS Standart (до 100 кг на полку)</a></li><li><a href="#">Серия MS Strong (до 150 кг на полку)</a></li><li><a href="#">Серия MS Hard (до 200 кг на полку)</a></li><li><a href="#">Полочные MS U (до 300 кг на полку)</a></li></ul>
+                <a href="/catalog/metallicheskie-stellazhi/" class="mega__all">Все категории <span aria-hidden="true">→</span></a>
+              </li>
+              <li class="mega__col">
+                <a href="/catalog/stellazhi-dlya-sklada/" class="mega__head"><img src="img/menu/cat-2.webp" width="32" height="32" alt="" loading="lazy">Стеллажи для склада</a>
+                <ul class="mega__links"><li><a href="#">Паллетные фронтальные</a></li><li><a href="#">Мезонинные стеллажи</a></li><li><a href="#">Набивные (глубинные) стеллажи</a></li><li><a href="#">Консольные стеллажи</a></li></ul>
+                <a href="/catalog/stellazhi-dlya-sklada/" class="mega__all">Все категории <span aria-hidden="true">→</span></a>
+              </li>
+              <li class="mega__col">
+                <a href="/catalog/metallicheskie-shkafy/" class="mega__head"><img src="img/menu/cat-3.webp" width="32" height="32" alt="" loading="lazy">Шкафы металлические</a>
+                <ul class="mega__links"><li><a href="#">Для раздевалок (локеры)</a></li><li><a href="#">Для офиса</a></li><li><a href="#">Сумочницы для сумок</a></li><li><a href="#">Картотечные</a></li></ul>
+                <a href="/catalog/metallicheskie-shkafy/" class="mega__all">Все категории <span aria-hidden="true">→</span></a>
+              </li>
+              <li class="mega__col">
+                <a href="/catalog/proizvodstvennaya-mebel/" class="mega__head"><img src="img/menu/cat-4.webp" width="32" height="32" alt="" loading="lazy">Производственная мебель</a>
+                <ul class="mega__links"><li><a href="#">Верстаки серии GARAGE</a></li><li><a href="#">Верстаки серии MASTER</a></li><li><a href="#">Верстаки серии PROFI W</a></li><li><a href="#">Верстаки слесарные ВП</a></li></ul>
+                <a href="/catalog/proizvodstvennaya-mebel/" class="mega__all">Все категории <span aria-hidden="true">→</span></a>
+              </li>
+              <li class="mega__col">
+                <a href="/catalog/tekhnika-dlya-sklada/" class="mega__head"><img src="img/menu/cat-5.webp" width="32" height="32" alt="" loading="lazy">Техника для склада</a>
+                <ul class="mega__links"><li><a href="#">Рохля гидравлическая</a></li><li><a href="#">Штабелеры</a></li></ul>
+                <a href="/catalog/tekhnika-dlya-sklada/" class="mega__all">Все категории <span aria-hidden="true">→</span></a>
+              </li>
+              <li class="mega__col">
+                <a href="/catalog/seyfy/" class="mega__head"><img src="img/menu/cat-6.webp" width="32" height="32" alt="" loading="lazy">Сейфы</a>
+                <ul class="mega__links"><li><a href="#">Сейфы европейской сертификации</a></li><li><a href="#">Взломостойкие сейфы I класса</a></li><li><a href="#">Взломостойкие сейфы II класса</a></li><li><a href="#">Взломостойкие сейфы III класса</a></li></ul>
+                <a href="/catalog/seyfy/" class="mega__all">Все категории <span aria-hidden="true">→</span></a>
+              </li>
+              <li class="mega__col">
+                <a href="/catalog/metallicheskaya-meditsinskaya-mebel/" class="mega__head"><img src="img/menu/cat-7.webp" width="32" height="32" alt="" loading="lazy">Медицинская мебель</a>
+                <ul class="mega__links"><li><a href="#">Аптечки</a></li><li><a href="#">Медицинские шкафы</a></li><li><a href="#">Медицинские стеллажи CTM MS</a></li><li><a href="#">Медицинские столы</a></li></ul>
+                <a href="/catalog/metallicheskaya-meditsinskaya-mebel/" class="mega__all">Все категории <span aria-hidden="true">→</span></a>
+              </li>
+              <li class="mega__col">
+                <a href="/catalog/pochtovye-yashchiki/" class="mega__head"><img src="img/menu/cat-8.webp" width="32" height="32" alt="" loading="lazy">Почтовые ящики</a>
+                <ul class="mega__links"><li><a href="#">Практик PB RB</a></li><li><a href="#">Почтовые ящики ПМ</a></li></ul>
+                <a href="/catalog/pochtovye-yashchiki/" class="mega__all">Все категории <span aria-hidden="true">→</span></a>
+              </li>
+              <li class="mega__col">
+                <a href="/catalog/metallicheskie-klyuchnitsy/" class="mega__head"><img src="img/menu/cat-9.webp" width="32" height="32" alt="" loading="lazy">Ключницы</a>
+                <ul class="mega__links"><li><a href="#">AIKO KEY</a></li><li><a href="#">AIKO KEY EL</a></li><li><a href="#">AIKO KEY G</a></li><li><a href="#">KEY FIRE</a></li></ul>
+                <a href="/catalog/metallicheskie-klyuchnitsy/" class="mega__all">Все категории <span aria-hidden="true">→</span></a>
+              </li>
+            </ul>
+          </div>
         </li>
-        <li class="nav__item">
-          <a href="/services/" class="nav__link nav__desk-only"><span class="nav__text">Услуги</span></a>
-          <!-- в бургер-меню «Услуги» раскрываются, как в UI kit -->
-          <button class="nav__link nav__drop-btn nav__mob-only" type="button" aria-expanded="false" aria-controls="nav-sub-services">
+        <li class="nav__item nav__item--sub">
+          <button class="nav__link nav__drop-btn" type="button" aria-expanded="false" aria-controls="nav-sub-services">
             <span class="nav__text">Услуги</span> <svg class="nav__chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
           </button>
-          <ul class="nav__sub nav__mob-only" id="nav-sub-services">
+          <ul class="nav__sub" id="nav-sub-services">
             <li><a href="/services/sborka-i-montazh/">Сборка и монтаж</a></li>
             <li><a href="/services/razrabotka-tz-dlya-auktsionov/">Подготовка тех. задания</a></li>
             <li><a href="/services/proektirovanie-sklada/">Проектирование склада</a></li>
@@ -415,6 +456,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=37"></script>
+<script src="js/main.js?v=42"></script>
 </body>
 </html>
