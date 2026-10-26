@@ -150,22 +150,25 @@ button { cursor: pointer; }
 .nav__item--mega { position: static; }
 .mega {
   position: absolute; top: calc(100% + 2px); left: 50%; z-index: 10; width: min(980px, calc(100% - 2 * var(--gutter))); margin-left: calc(min(980px, calc(100% - 2 * var(--gutter))) / -2);
-  padding: 28px 32px 30px; background: var(--c-surface); border: 1px solid #585858; border-radius: 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+  padding: 24px 32px 26px; background: var(--c-surface); border: 1px solid #585858; border-radius: 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+  /* окно целиком в экране с отступом снизу; если не помещается — прокрутка внутри */
+  max-height: calc(100vh - var(--header-h) - 28px); max-height: calc(100dvh - var(--header-h) - 28px);
+  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #585858 transparent;
   opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .2s, transform .2s, visibility .2s;
 }
 .mega::before { content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: 32px; } /* мостик для наведения */
-.mega__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 40px; }
+.mega__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 40px; }
 .mega__col { display: flex; flex-direction: column; }
 .mega__head {
-  display: flex; align-items: center; gap: 12px; padding-bottom: 12px; font-size: 16px; font-weight: 600; line-height: 1.2;
+  display: flex; align-items: center; gap: 12px; padding-bottom: 10px; font-size: 16px; font-weight: 600; line-height: 1.2;
   border-bottom: 1px solid #585858; transition: border-color .2s;
 }
 .mega__head img { flex: none; width: 32px; height: 32px; object-fit: cover; border-radius: 4px; }
 .mega__head:hover { border-color: var(--c-accent); }
-.mega__links { display: grid; gap: 8px; margin-top: 12px; font-size: 14px; line-height: 1.25; color: var(--c-text-2); }
+.mega__links { display: grid; gap: 7px; margin-top: 10px; font-size: 14px; line-height: 1.25; color: var(--c-text-2); }
 .mega__links a:hover, .mega__head:hover { text-decoration: underline; text-underline-offset: 3px; }
 .mega__links a:active, .mega__all:active { color: var(--c-accent); }
-.mega__all { align-self: flex-start; margin-top: 12px; font-size: 14px; color: var(--c-accent); }
+.mega__all { align-self: flex-start; margin-top: 10px; font-size: 14px; color: var(--c-accent); }
 .mega__all:hover { text-decoration: underline; text-underline-offset: 3px; }
 .nav__sub a { display: block; font-size: 16px; line-height: 1.2; color: var(--c-text-2); transition: color .15s; }
 .nav__sub a:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -540,7 +543,7 @@ button { cursor: pointer; }
   .nav__item--sub .nav__sub { width: auto; }
   .mega {
     position: static; display: none; width: auto; margin: 0; padding: 4px 0 4px 12px;
-    background: none; border: 0; box-shadow: none; opacity: 1; visibility: visible; transform: none;
+    background: none; border: 0; box-shadow: none; opacity: 1; visibility: visible; transform: none; max-height: none; overflow: visible;
   }
   .mega::before, .mega__links, .mega__all, .mega__head img { display: none; }
   .nav__drop-btn[aria-expanded="true"] + .mega { display: block; }
