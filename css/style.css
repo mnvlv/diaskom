@@ -134,9 +134,8 @@ button { cursor: pointer; }
 .nav__chevron { width: 22px; height: 22px; transition: transform .2s; }
 .nav__drop-btn[aria-expanded="true"] .nav__chevron { transform: rotate(180deg); }
 .nav__mob-only { display: none; }
-/* «Услуги»: выпадающий список под пунктом; на десктопе без стрелки, как в макете */
+/* «Услуги»: выпадающий список под пунктом, со стрелкой как у «Каталога» */
 .nav__item--sub { position: relative; }
-.nav__item--sub .nav__chevron { display: none; }
 .nav__item--sub .nav__sub { width: 260px; }
 /* выпадающее меню «Стеллажи» по UI kit: 272px, фон #232323, рамка #585858, радиус 8px */
 .nav__sub {
@@ -546,7 +545,6 @@ button { cursor: pointer; }
   .nav__list { flex-direction: column; align-items: stretch; gap: 0; }
   .nav__desk-only { display: none; }
   .nav__mob-only { display: inline-flex; }
-  .nav__item--sub .nav__chevron { display: block; }
   .nav__item--sub .nav__sub { width: auto; }
   .mega {
     position: static; display: none; width: auto; margin: 0; padding: 4px 0 4px 12px;
