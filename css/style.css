@@ -209,20 +209,11 @@ button { cursor: pointer; }
 .hero__buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 52px; padding-left: 4px; }
 .hero__media {
   position: relative; overflow: hidden; border-radius: var(--radius-lg); background: var(--c-surface);
-  box-shadow: 0 0 0 1px #585858, 0 32px 64px -28px rgba(0, 0, 0, .9), 0 0 120px -48px rgba(234, 89, 1, .55);
+  box-shadow: 0 0 0 1px #585858, 0 16px 32px -16px rgba(0, 0, 0, .85), 0 0 110px -40px rgba(234, 89, 1, .75);
 }
 .hero__media::before {
   content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; pointer-events: none;
   box-shadow: inset 0 0 70px rgba(0, 0, 0, .55); background: linear-gradient(180deg, rgba(26, 26, 26, 0) 65%, rgba(26, 26, 26, .4));
-}
-.hero__media::after {
-  content: ''; position: absolute; inset: 14px; z-index: 2; pointer-events: none;
-  background:
-    linear-gradient(var(--c-accent), var(--c-accent)) left top / 28px 2px,
-    linear-gradient(var(--c-accent), var(--c-accent)) left top / 2px 28px,
-    linear-gradient(var(--c-accent), var(--c-accent)) right bottom / 28px 2px,
-    linear-gradient(var(--c-accent), var(--c-accent)) right bottom / 2px 28px;
-  background-repeat: no-repeat;
 }
 .hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
