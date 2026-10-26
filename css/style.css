@@ -74,10 +74,16 @@ button { cursor: pointer; }
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 11' fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m.5.5 5 5-5 5'/%3E%3C/svg%3E") center / contain no-repeat;
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 11' fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m.5.5 5 5-5 5'/%3E%3C/svg%3E") center / contain no-repeat;
 }
-.crumbs a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.crumbs a:hover { color: var(--c-accent); }
 @media (max-width: 600px) {
   .crumbs { font-size: 14px; }
   .crumbs li + li::before { margin: 0 8px 0 9px; }
+}
+
+/* ---------- Наведение на текстовые элементы: акцентный цвет с мягким переходом (вместо подчёркивания) ---------- */
+.crumbs a, .nav__link, .nav__sub a, .mega__head, .mega__links a, .mega__all, .footer__col a, .footer__phone, .footer__bottom a,
+.form__check a, .cat-card__title, .cat-card__sub a, .cats-box__more, .c-check, .filter__cats a, .sort__list li, .product__title a, .faq__q button {
+  transition: color .3s ease;
 }
 
 /* ---------- Кнопки ---------- */
@@ -130,7 +136,7 @@ button { cursor: pointer; }
   background: none; border: 0; cursor: pointer;
 }
 /* наведение и открытое меню по UI kit — подчёркивание */
-.nav__link:hover .nav__text, .nav__drop-btn[aria-expanded="true"] .nav__text { text-decoration: underline; text-underline-offset: 4px; }
+.nav__link:hover, .nav__drop-btn[aria-expanded="true"] { color: var(--c-accent); }
 .nav__chevron { width: 22px; height: 22px; transition: transform .2s; }
 .nav__drop-btn[aria-expanded="true"] .nav__chevron { transform: rotate(180deg); }
 .nav__mob-only { display: none; }
@@ -161,16 +167,16 @@ button { cursor: pointer; }
 .mega__col { display: flex; flex-direction: column; }
 .mega__head {
   display: flex; align-items: center; gap: 12px; padding-bottom: 10px; font-size: 16px; font-weight: 600; line-height: 1.2;
-  border-bottom: 1px solid #585858; transition: border-color .2s;
+  border-bottom: 1px solid #585858; transition: border-color .3s ease, color .3s ease;
 }
 .mega__head:hover { border-color: var(--c-accent); }
 .mega__links { display: grid; gap: 7px; margin-top: 10px; font-size: 14px; line-height: 1.25; color: var(--c-text-2); }
-.mega__links a:hover, .mega__head:hover { text-decoration: underline; text-underline-offset: 3px; }
+.mega__links a:hover, .mega__head:hover { color: var(--c-accent); }
 .mega__links a:active, .mega__all:active { color: var(--c-accent); }
 .mega__all { align-self: flex-start; margin-top: 10px; font-size: 14px; color: var(--c-accent); }
-.mega__all:hover { text-decoration: underline; text-underline-offset: 3px; }
-.nav__sub a { display: block; font-size: 16px; line-height: 1.2; color: var(--c-text-2); transition: color .15s; }
-.nav__sub a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.mega__all:hover { color: #ff8a3d; }
+.nav__sub a { display: block; font-size: 16px; line-height: 1.2; color: var(--c-text-2); }
+.nav__sub a:hover { color: var(--c-accent); }
 /* нажатие на пункт выпадающего меню — акцентный цвет (по макету) */
 .nav__sub a:active, .nav__drop-btn:active, .form__options li:active { color: var(--c-accent); }
 .nav__mobile { display: none; }
@@ -430,8 +436,8 @@ button { cursor: pointer; }
 }
 .form__check input:focus-visible + .form__box { outline: 2px solid var(--c-accent); outline-offset: 3px; }
 .form__check a { font-weight: 600; color: var(--c-accent); }
-.form__check a:hover { text-decoration: underline; }
-.form__check:hover > span:last-child, .form__check:hover a { text-decoration: underline; text-underline-offset: 3px; }
+.form__check a:hover { color: #ff8a3d; }
+.form__check:hover > span:last-child { color: var(--c-text-2); }
 .form__check.is-invalid { color: #ad0000; }
 .form__check.is-invalid .form__box { border-color: #ad0000; }
 .form .btn { justify-self: end; width: calc(100% - 1.5px); margin-top: 5px; }
@@ -471,10 +477,11 @@ button { cursor: pointer; }
 .footer__title { margin-bottom: 18px; font-size: 20px; font-weight: 600; line-height: 1.2; text-transform: uppercase; }
 .footer__col ul { display: grid; gap: 12px; font-weight: 500; color: var(--c-text-2); }
 /* наведение по UI kit: подчёркивание, цвет не меняется */
-.footer__col a:hover, .footer__phone:hover, .footer__bottom a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.footer__col a:hover, .footer__phone:hover, .footer__bottom a:hover { color: var(--c-accent); }
+.footer__col a.footer__all:hover { color: #ff8a3d; }
 .footer__all { color: var(--c-accent); text-decoration: underline; text-underline-offset: 3px; }
 /* нажатие на ссылку в подвале — акцентный цвет, как в выпадающих меню */
-.footer__card a { transition: color .15s, border-color .2s; }
+.footer__card a { transition: color .3s ease, border-color .3s ease; }
 .footer__card a:active { color: var(--c-accent); }
 .footer__bottom {
   grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; margin-top: 22px; padding: 33px 8px 33px 2px;
