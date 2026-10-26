@@ -25,12 +25,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Выпадающие пункты меню: мегаменю «Каталог» и «Услуги» (на десктопе — по наведению) ---------- */
   const desktop = window.matchMedia('(min-width: 1025px)');
+  const drops = [];
   document.querySelectorAll('.nav__drop-btn').forEach((btn) => {
     const item = btn.closest('.nav__item');
-    const setDrop = (open) => btn.setAttribute('aria-expanded', open);
+    let timer = 0;
+    const setDrop = (open) => { clearTimeout(timer); btn.setAttribute('aria-expanded', open); };
+    drops.push(setDrop);
     btn.addEventListener('click', () => setDrop(btn.getAttribute('aria-expanded') !== 'true'));
-    item.addEventListener('mouseenter', () => { if (desktop.matches) setDrop(true); });
-    item.addEventListener('mouseleave', () => { if (desktop.matches) setDrop(false); });
+    // При уходе курсора меню закрывается с задержкой: можно спокойно вести мышь к списку,
+    // даже медленно или наискосок через промежуток под пунктом
+    item.addEventListener('mouseenter', () => {
+      if (!desktop.matches) return;
+      drops.forEach((d) => { if (d !== setDrop) d(false); });
+      setDrop(true);
+    });
+    item.addEventListener('mouseleave', () => {
+      if (!desktop.matches) return;
+      clearTimeout(timer);
+      timer = setTimeout(() => btn.setAttribute('aria-expanded', 'false'), 350);
+    });
     item.addEventListener('focusout', (e) => { if (desktop.matches && !item.contains(e.relatedTarget)) setDrop(false); });
     document.addEventListener('click', (e) => { if (desktop.matches && !item.contains(e.target)) setDrop(false); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setDrop(false); });

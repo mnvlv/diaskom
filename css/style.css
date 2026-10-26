@@ -150,7 +150,7 @@ button { cursor: pointer; }
   background: var(--c-surface); border: 1px solid #585858; border-radius: 8px;
   opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .2s, transform .2s, visibility .2s;
 }
-.nav__sub::before { content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: 20px; } /* мостик для наведения */
+.nav__sub::before { content: ''; position: absolute; left: -24px; right: -24px; bottom: 100%; height: 30px; } /* мостик для наведения */
 .nav__drop-btn[aria-expanded="true"] + .nav__sub, .nav__drop-btn[aria-expanded="true"] + .mega { opacity: 1; visibility: visible; transform: none; }
 /* мегаменю «Каталог» (как на текущем сайте): 9 категорий в 3 колонки, стиль выпадающих меню из UI kit */
 .nav__item--mega { position: static; }
@@ -162,7 +162,12 @@ button { cursor: pointer; }
   overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #585858 transparent;
   opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .2s, transform .2s, visibility .2s;
 }
-.mega::before { content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: 32px; } /* мостик для наведения */
+/* мостик для наведения между «Каталогом» и окном: у самого окна есть прокрутка (overflow), которая обрезала бы
+   псевдоэлемент, поэтому мостик висит под кнопкой и ведёт вниз до окна */
+.nav__item--mega .nav__drop-btn { position: relative; }
+.nav__item--mega .nav__drop-btn[aria-expanded="true"]::after {
+  content: ''; position: absolute; top: 100%; left: -80px; right: -80px; height: calc(var(--header-h) / 2 + 8px);
+}
 .mega__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 40px; }
 .mega__col { display: flex; flex-direction: column; }
 .mega__head {
@@ -551,7 +556,7 @@ button { cursor: pointer; }
     position: static; display: none; width: auto; margin: 0; padding: 4px 0 4px 12px;
     background: none; border: 0; box-shadow: none; opacity: 1; visibility: visible; transform: none; max-height: none; overflow: visible;
   }
-  .mega::before, .mega__links, .mega__all { display: none; }
+  .mega__links, .mega__all, .nav__item--mega .nav__drop-btn::after { display: none; }
   .nav__drop-btn[aria-expanded="true"] + .mega { display: block; }
   .mega__grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .mega__head { padding: 8px 0; font-weight: 400; text-transform: uppercase; border: 0; }
