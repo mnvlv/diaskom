@@ -163,7 +163,6 @@ button { cursor: pointer; }
   display: flex; align-items: center; gap: 12px; padding-bottom: 10px; font-size: 16px; font-weight: 600; line-height: 1.2;
   border-bottom: 1px solid #585858; transition: border-color .2s;
 }
-.mega__head img { flex: none; width: 32px; height: 32px; object-fit: cover; border-radius: 4px; }
 .mega__head:hover { border-color: var(--c-accent); }
 .mega__links { display: grid; gap: 7px; margin-top: 10px; font-size: 14px; line-height: 1.25; color: var(--c-text-2); }
 .mega__links a:hover, .mega__head:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -545,7 +544,7 @@ button { cursor: pointer; }
     position: static; display: none; width: auto; margin: 0; padding: 4px 0 4px 12px;
     background: none; border: 0; box-shadow: none; opacity: 1; visibility: visible; transform: none; max-height: none; overflow: visible;
   }
-  .mega::before, .mega__links, .mega__all, .mega__head img { display: none; }
+  .mega::before, .mega__links, .mega__all { display: none; }
   .nav__drop-btn[aria-expanded="true"] + .mega { display: block; }
   .mega__grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .mega__head { padding: 8px 0; font-weight: 400; text-transform: uppercase; border: 0; }
