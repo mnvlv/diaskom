@@ -82,7 +82,7 @@ button { cursor: pointer; }
 
 /* ---------- Наведение на текстовые элементы: акцентный цвет с мягким переходом (вместо подчёркивания) ---------- */
 .crumbs a, .nav__link, .nav__sub a, .mega__head, .mega__links a, .footer__col a, .footer__phone, .footer__bottom a,
-.form__check a, .cat-card__title, .cat-card__sub a, .cats-box__more, .c-check, .filter__cats a, .sort__list li, .product__title a, .faq__q button {
+.cat-card__title, .cat-card__sub a, .cats-box__more, .c-check, .filter__cats a, .sort__list li, .product__title a, .faq__q button {
   transition: color .3s ease;
 }
 
@@ -433,16 +433,18 @@ button { cursor: pointer; }
 .form__options li:hover, .form__options li.is-focused { background: #2a2a2a; }
 .form__options li[aria-selected="true"] { color: var(--c-accent); }
 .form__options li[aria-selected="true"]::after { background: radial-gradient(circle, #1a1a1a 0 4.5px, var(--c-accent) 5px); border-color: var(--c-accent); }
-.form__check { position: relative; display: flex; align-items: center; gap: 8.5px; margin-top: 5px; font-size: 16px; color: var(--c-muted); cursor: pointer; }
+.form__check { position: relative; display: flex; align-items: center; gap: 8.5px; margin-top: 5px; font-size: 16px; font-weight: 500; color: var(--c-muted); cursor: pointer; }
 .form__check input { position: absolute; opacity: 0; width: 29px; height: 29px; margin: 0; }
-.form__box { flex: none; width: 29px; height: 29px; border: 1px solid var(--c-accent); border-radius: 3.5px; transition: background-color .2s; }
+.form__box { flex: none; width: 29px; height: 29px; border: 1.5px solid var(--c-accent); border-radius: 6px; transition: background-color .25s ease; }
 .form__check input:checked + .form__box {
-  background: var(--c-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.5'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 18px no-repeat;
+  /* галочка по UI kit: крупная, белая, со скруглёнными концами */
+  background: var(--c-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4.5 12.5 5 5 10-11'/%3E%3C/svg%3E") center / 21px no-repeat;
 }
 .form__check input:focus-visible + .form__box { outline: 2px solid var(--c-accent); outline-offset: 3px; }
 .form__check a { font-weight: 600; color: var(--c-accent); }
-.form__check a:hover { color: #ff8a3d; }
-.form__check:hover > span:last-child { color: var(--c-text-2); }
+/* наведение по UI kit: цвета не меняются, весь текст подчёркивается (серый — серым, ссылка — оранжевым) */
+.form__check > span:last-child, .form__check a { text-decoration: underline transparent; text-underline-offset: 4px; text-decoration-thickness: 1.5px; transition: text-decoration-color .3s ease; }
+.form__check:hover > span:last-child, .form__check:hover a { text-decoration-color: currentColor; }
 .form__check.is-invalid { color: #ad0000; }
 .form__check.is-invalid .form__box { border-color: #ad0000; }
 .form .btn { justify-self: end; width: calc(100% - 1.5px); margin-top: 5px; }
