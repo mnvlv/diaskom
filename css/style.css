@@ -299,9 +299,10 @@ button { cursor: pointer; }
 .slider-nav { display: flex; align-items: center; gap: 8px; }
 .slider-nav__btn {
   display: grid; place-items: center; width: 34px; height: 34px; padding: 0; color: #fff;
-  background: var(--c-accent); border: 0; border-radius: var(--radius); transition: background-color .2s;
+  background: var(--c-accent); border: 0; border-radius: 8px; transition: background-color .2s;
 }
-.slider-nav__btn svg { width: 18px; height: 18px; }
+/* стрелки по макету: 13.5×9.7 в кнопке 34px, 18.4×13 в кнопке 48px */
+.slider-nav__btn svg { width: 13.5px; height: 9.7px; }
 .slider-nav__btn:hover:not(:disabled) { background: var(--c-accent-hover); }
 .slider-nav__btn:disabled { background: var(--c-accent-dim); cursor: default; }
 .slider-nav__all { margin-left: 24px; }
@@ -604,6 +605,7 @@ button { cursor: pointer; }
   .section-head { align-items: flex-start; flex-direction: column; }
   .slider-nav { width: 100%; }
   .slider-nav__btn { width: 44px; height: 44px; }
+  .slider-nav__btn svg { width: 17px; height: 12px; }
   .slider-nav__all { margin-left: auto; }
   /* проекты по UI kit: одна карточка, стрелки поверх фото, кнопка «Смотреть все проекты» на всю ширину */
   .section-head .slider-nav { display: none; }
@@ -626,6 +628,7 @@ button { cursor: pointer; }
   .steps .step::after { display: none; }
   .steps-nav { display: flex; align-items: center; gap: 16px; margin-top: 24px; }
   .steps-nav .slider-nav__btn { flex: none; width: 40px; height: 40px; }
+  .steps-nav .slider-nav__btn svg, .slider-wrap__btn svg { width: 15.5px; height: 11px; }
   .steps-nav__bar { position: relative; flex: 1; height: 2px; background: #585858; border-radius: 1px; overflow: hidden; }
   .steps-nav__bar span {
     position: absolute; inset: 0 auto 0 0; width: var(--size, 25%); background: var(--c-accent);
