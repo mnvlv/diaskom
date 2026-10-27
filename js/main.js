@@ -65,20 +65,43 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------- Слайдер (нативный scroll-snap + стрелки) ---------- */
+  // Если карточек больше, чем помещается, — обычная прокрутка; стрелка на краю темнее (disabled).
+  // Если все карточки видны (например, 5 проектов на широком экране), «вперёд» по макету активна
+  // и перекладывает первую карточку в конец, «назад» возвращает её — лента листается по кругу.
+  const sliders = new Map();
   document.querySelectorAll('[data-slider-prev], [data-slider-next]').forEach((btn) => {
-    const slider = document.getElementById(btn.dataset.sliderPrev || btn.dataset.sliderNext);
-    const dir = btn.dataset.sliderPrev ? -1 : 1;
-    btn.addEventListener('click', () => {
-      const card = slider.firstElementChild;
-      const gap = parseFloat(getComputedStyle(slider).columnGap) || 0;
-      slider.scrollBy({ left: dir * (card.offsetWidth + gap), behavior: 'smooth' });
-    });
-    // Неактивная стрелка на краю — темнее (disabled)
+    const id = btn.dataset.sliderPrev || btn.dataset.sliderNext;
+    if (!sliders.has(id)) sliders.set(id, { el: document.getElementById(id), prev: [], next: [], shift: 0 });
+    sliders.get(id)[btn.dataset.sliderPrev ? 'prev' : 'next'].push(btn);
+  });
+  sliders.forEach((sl) => {
+    const { el } = sl;
+    const fits = () => el.scrollWidth - el.clientWidth <= 1;
     const update = () => {
-      const max = slider.scrollWidth - slider.clientWidth - 1;
-      btn.disabled = dir < 0 ? slider.scrollLeft <= 0 : slider.scrollLeft >= max;
+      const max = el.scrollWidth - el.clientWidth - 1;
+      const prevOff = fits() ? sl.shift === 0 : el.scrollLeft <= 0;
+      const nextOff = fits() ? false : el.scrollLeft >= max;
+      sl.prev.forEach((b) => { b.disabled = prevOff; });
+      sl.next.forEach((b) => { b.disabled = nextOff; });
     };
-    slider.addEventListener('scroll', update, { passive: true });
+    const rotate = (dir) => {
+      el.animate([{ opacity: 1 }, { opacity: 0.35 }, { opacity: 1 }], { duration: 350, easing: 'ease' });
+      setTimeout(() => {
+        const n = el.children.length;
+        if (dir > 0) el.append(el.firstElementChild); else el.prepend(el.lastElementChild);
+        sl.shift = (sl.shift + dir + n) % n;
+        update();
+      }, 120);
+    };
+    const step = (dir) => {
+      if (fits()) { rotate(dir); return; }
+      const card = el.firstElementChild;
+      const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
+      el.scrollBy({ left: dir * (card.offsetWidth + gap), behavior: 'smooth' });
+    };
+    sl.prev.forEach((b) => b.addEventListener('click', () => step(-1)));
+    sl.next.forEach((b) => b.addEventListener('click', () => step(1)));
+    el.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   });
