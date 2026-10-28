@@ -180,7 +180,7 @@ button { cursor: pointer; }
   position: absolute; top: calc(100% + 2px); left: 50%; z-index: 10; width: min(980px, calc(100% - 2 * var(--gutter))); margin-left: calc(min(980px, calc(100% - 2 * var(--gutter))) / -2);
   padding: 24px 32px 26px; background: var(--menu-bg); border: 1px solid #585858; border-radius: 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
   /* окно целиком в экране с отступом снизу; если не помещается — прокрутка внутри */
-  max-height: calc(100vh - var(--header-h) - 28px); max-height: calc(100dvh - var(--header-h) - 28px);
+  max-height: calc(100vh / var(--z, 1) - var(--header-h) - 28px); max-height: calc(100dvh / var(--z, 1) - var(--header-h) - 28px);
   overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #585858 transparent;
   opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .2s, transform .2s, visibility .2s;
 }
