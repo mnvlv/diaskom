@@ -86,6 +86,19 @@ button { cursor: pointer; }
   transition: color .3s ease;
 }
 
+/* ---------- Выпадающие меню: оранжевый блик бежит по рамке (как на текущем сайте) ---------- */
+@property --run { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.nav__sub::after, .mega::after, .form__options::after, .sort__list::after, .cat-card__sub::after {
+  content: ''; position: absolute; z-index: 1; inset: -1px; padding: 1.5px; border-radius: inherit; pointer-events: none;
+  background: conic-gradient(from var(--run), transparent 0deg 280deg, rgba(234, 89, 1, .45) 310deg, var(--c-accent) 338deg 356deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: menu-run 4s linear infinite;
+}
+/* у окон с прокруткой/обрезкой рамка рисуется по внутреннему краю */
+.mega::after, .form__options::after, .sort__list::after { inset: 0; }
+@keyframes menu-run { to { --run: 360deg; } }
+
 /* ---------- Кнопки ---------- */
 /* размеры по макету — с рамкой 1px: большая 283×56, обычная 48, малая 174×34; текст 14/12px, вес 500 */
 .btn {
@@ -537,6 +550,7 @@ button { cursor: pointer; }
 }
 
 @media (max-width: 1024px) {
+  .nav__sub::after, .mega::after { display: none; }  /* в бургер-меню списки без рамки */
   :root { --header-h: 72px; --gutter: 24px; }
   .burger { display: block; margin-left: 12px; }
   .header__btn { display: none; }
