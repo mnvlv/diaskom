@@ -93,8 +93,14 @@ button { cursor: pointer; }
   background: conic-gradient(from var(--run), transparent 0deg 280deg, rgba(234, 89, 1, .45) 310deg, var(--c-accent) 338deg 356deg, transparent 360deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
           mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-  animation: menu-run 4s linear infinite;
+  animation: menu-run 14s linear infinite;
 }
+/* пункт под курсором — как на видео: оранжевый текст на мягкой тёплой плашке со скруглением */
+.nav__sub a, .mega__links a, .cat-card__sub a, .sort__list li {
+  margin: -5px -10px; padding: 5px 10px; border-radius: 8px; transition: color .3s ease, background-color .3s ease;
+}
+.nav__sub a:hover, .mega__links a:hover, .cat-card__sub a:hover, .sort__list li:hover, .sort__list li.is-focused,
+.form__options li:hover, .form__options li.is-focused { color: var(--c-accent); background: rgba(234, 89, 1, .12); }
 /* у окон с прокруткой/обрезкой рамка рисуется по внутреннему краю */
 .mega::after, .form__options::after, .sort__list::after { inset: 0; }
 @keyframes menu-run { to { --run: 360deg; } }
@@ -443,7 +449,7 @@ button { cursor: pointer; }
   content: ''; position: absolute; top: 50%; right: 26px; width: 28px; height: 28px; margin-top: -14px;
   border: 1.5px solid #585858; border-radius: 50%; box-sizing: border-box; transition: border-color .2s, background-color .2s;
 }
-.form__options li:hover, .form__options li.is-focused { background: #2a2a2a; }
+.form__options li:hover, .form__options li.is-focused { color: var(--c-accent); background: rgba(234, 89, 1, .12); }
 .form__options li[aria-selected="true"] { color: var(--c-accent); }
 .form__options li[aria-selected="true"]::after { background: radial-gradient(circle, #1a1a1a 0 4.5px, var(--c-accent) 5px); border-color: var(--c-accent); }
 .form__check { position: relative; display: flex; align-items: center; gap: 8.5px; margin-top: 5px; font-size: 16px; font-weight: 500; color: var(--c-muted); cursor: pointer; }
